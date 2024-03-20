@@ -1,0 +1,12 @@
+{
+    "name": "Trunk Flake Factory",
+    "version": "1.0.0",
+    "description": "Code goes in...flaky tests come out",
+    "main": "index.js",
+    "scripts": {
+      "test": "mocha"
+    },
+    "devDependencies": {
+      "mocha": "^8.4.0"
+    }
+  }
