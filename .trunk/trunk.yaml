@@ -19,6 +19,12 @@ runtimes:
     - node@18.12.1
     - python@3.10.8
 
+lint:
+  ignore:
+    - linters: [ALL]
+      paths:
+        - "**/pnpm-lock.yaml"
+
 actions:
   enabled:
     - trunk-announce
