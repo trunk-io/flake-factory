@@ -30,9 +30,11 @@ jobs:
           pnpm install
 
       - name: Run Mocha Tests
+        if: ${{ always() }}
         run: npm run mocha-test
 
       - name: Run Jest Tests
+        if: ${{ always() }}
         run: npm run jest-test
 
       - name: Flaky Test Reporter
