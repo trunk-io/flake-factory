@@ -11,6 +11,9 @@ dependencies:
   jasmine:
     specifier: ^5.1.0
     version: 5.1.0
+  jasmine-reporters:
+    specifier: ^2.5.2
+    version: 2.5.2
   jasmine-xml-reporter:
     specifier: ^1.2.1
     version: 1.2.1
