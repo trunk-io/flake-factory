@@ -5,8 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "mocha-test": "mocha 'tests/mocha/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml",
-    "test": "jest"
+    "jest-test": "jest tests/jest/**/*.js",
+    "mocha-test": "mocha 'tests/mocha/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
   },
   "dependencies": {
     "moment": "^2.30.1"
