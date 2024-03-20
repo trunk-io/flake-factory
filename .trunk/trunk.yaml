@@ -33,5 +33,7 @@ actions:
     - trunk-upgrade-available
 
 tools:
+  runtimes:
+    - node
   enabled:
     - pnpm@8.15.5

@@ -1,7 +1,7 @@
-const assert = require("assert");
+import assert from "assert";
 
-describe("Even handed - minute is divible by 2", function () {
-  it("should verify that the current minute is even", function () {
+describe("Even handed - minute is divible by 2", () => {
+  it("should verify that the current minute is even", () => {
     const today = new Date();
     const currentMinute = today.getMinutes();
 
@@ -9,8 +9,8 @@ describe("Even handed - minute is divible by 2", function () {
   });
 });
 
-describe("Odd handed - minute is divible by 1", function () {
-  it("should verify that the current minute is odd", function () {
+describe("Odd handed - minute is divible by 1", () => {
+  it("should verify that the current minute is odd", () => {
     const today = new Date();
     const currentMinute = today.getMinutes();
 
