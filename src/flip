@@ -6,12 +6,14 @@ with open("src/season.js", "r+", encoding="utf-8") as file:
     content = file.read()
 
     if "return Animal.Rabbit" in content:
-        print("Bugs - 'Duck Season'")
         content = re.sub("Animal.Rabbit", "Animal.Duck", content)
+        SEASON = "Duck Season"
     else:
-        print("Daffy - 'Rabbit Season'")
         content = re.sub("Animal.Duck", "Animal.Rabbit", content)
+        SEASON = "Rabbit Season"
 
     file.seek(0)
     file.write(content)
     file.truncate()
+
+print(f"::set-output name=season::{SEASON}")
