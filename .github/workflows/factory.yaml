@@ -16,10 +16,19 @@ jobs:
         id: switch
         run: src/flip
 
+      - name: Choose secret
+        id: choose_secret
+        run: |
+          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+          else
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+          fi
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.ELI_PAT }}
+          token: ${{ secrets[steps.choose_secret.outputs.secret_name] }}
           commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
           title: ${{ steps.switch.outputs.season }}
           body: ${{ steps.switch.outputs.season }}
