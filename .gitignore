@@ -1,0 +1,58 @@
+# Mac
+.DS_Store
+
+# Bazel
+/bazel-*
+/external
+/user.bazelrc
+/build_events.json
+
+# C++
+/compile_commands.json
+.cache
+default.profraw
+
+# Python
+*.pyc
+
+# Node
+**/node_modules
+
+# Typescript
+**/out/
+**/dist/
+*.tsbuildinfo
+
+# Next.js
+**/next-env.d.ts
+**/.next
+**/analyze/nodejs.html
+
+# Rust
+debug/
+target/
+
+# Idea
+**/.idea
+**/.clwb
+
+# Snyk
+**/.dccache
+
+# playwright output
+test-results/
+playwright-report/
+.e2e_tests_auth/
+
+# Prefer yarn install and ignore package-lock
+**/package-lock.json
+
+# Jest
+coverage
+junit.xml
+
+# Rust
+rust-project.json
+
+# Vercel
+.vercel
