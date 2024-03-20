@@ -36,6 +36,10 @@ jobs:
         if: ${{ always() }}
         run: npm run jest-test
 
+      - name: Run Jasmine Tests
+        if: ${{ always() }}
+        run: npm run jasmine-test
+
       - name: Flaky Test Reporter
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
