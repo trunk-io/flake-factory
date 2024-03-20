@@ -1,0 +1,12 @@
+{
+  "reporters": [
+    "default",
+    [
+      "jest-junit",
+      {
+        "outputDirectory": "tests/jest",
+        "outputName": "jest_junit_test.xml"
+      }
+    ]
+  ]
+}
