@@ -5,15 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  jasmin:
-    specifier: ^0.0.2
-    version: 0.0.2
   jasmine:
     specifier: ^5.1.0
     version: 5.1.0
-  jasmine-xml-reporter:
-    specifier: ^1.2.1
-    version: 1.2.1
+  jasmine-reporters:
+    specifier: ^2.5.2
+    version: 2.5.2
   moment:
     specifier: ^2.30.1
     version: 2.30.1
@@ -2896,10 +2893,6 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: false
 
-  /jasmin@0.0.2:
-    resolution: {integrity: sha512-DAZ4kUTG6Gko20V4R3mKdaytfmksEqHkuXc8XcoEiqokc67sH+6XyGxVGqOTHYyqDnPib1g0hqAkhXWnZFh8mA==}
-    dev: false
-
   /jasmine-core@5.1.2:
     resolution: {integrity: sha512-2oIUMGn00FdUiqz6epiiJr7xcFyNYj3rDcfmnzfkBnHyBQ3cBQUs4mmyGsOb7TTLb9kxk7dBcmEmqhDKkBoDyA==}
     dev: false
@@ -2909,12 +2902,6 @@ packages:
     dependencies:
       '@xmldom/xmldom': 0.8.10
       mkdirp: 1.0.4
-    dev: false
-
-  /jasmine-xml-reporter@1.2.1:
-    resolution: {integrity: sha512-/7DJOdq0liOxUHDlg+VzoDog7dviJY20QupoBFPNrajP+VBePag2/jeCP2vb0TpHNLRkBLmySqr0L3b6l/R2ww==}
-    dependencies:
-      jasmine-reporters: 2.5.2
     dev: false
 
   /jasmine@5.1.0:

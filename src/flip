@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if grep -q 'Season.Rabbit' src/season.js; then
-	sed -i 's/Season.Rabbit/Season.Duck/g' src/season.js
+if grep -q 'return Animal.Rabbit' src/season.js; then
+	echo "Bugs - 'Duck Season'"
+	sed -i'' 's/Animal.Rabbit/Animal.Duck/g' src/season.js
 else
-	sed -i 's/Season.Duck/Season.Rabbit/g' src/season.js
+	echo "Daffy - 'Rabbit Season'"
+	sed -i'' 's/Animal.Duck/Animal.Rabbit/g' src/season.js
 fi
