@@ -1,9 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env python3
 
-if grep -q 'return Animal.Rabbit' src/season.js; then
-	echo "Bugs - 'Duck Season'"
-	sed -i'' 's/Animal.Rabbit/Animal.Duck/g' src/season.js
-else
-	echo "Daffy - 'Rabbit Season'"
-	sed -i'' 's/Animal.Duck/Animal.Rabbit/g' src/season.js
-fi
+import re
+
+with open("src/season.js", "r+", encoding="utf-8") as file:
+    content = file.read()
+
+    if "return Animal.Rabbit" in content:
+        print("Bugs - 'Duck Season'")
+        content = re.sub("Animal.Rabbit", "Animal.Duck", content)
+    else:
+        print("Daffy - 'Rabbit Season'")
+        content = re.sub("Animal.Duck", "Animal.Rabbit", content)
+
+    file.seek(0)
+    file.write(content)
+    file.truncate()
