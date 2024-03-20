@@ -15,7 +15,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Automated PR"
-          title: "Automated PR"
-          body: "This is an automated pull request."
-          branch: "automated-pr"
+          commit-message: Automated PR
+          title: Automated PR
+          body: This is an automated pull request.
+          branch: automated-pr
