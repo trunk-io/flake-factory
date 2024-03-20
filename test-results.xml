@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites name="Mocha Tests" time="0.003" tests="2" failures="1">
-  <testsuite name="Root Suite" timestamp="2024-03-20T17:53:23" tests="0" time="0.000" failures="0">
+  <testsuite name="Root Suite" timestamp="2024-03-20T18:07:38" tests="0" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="Even handed - minute is divible by 2" timestamp="2024-03-20T17:53:23" tests="1" file="/home/eli/Github/flake-factory/tests/mocha/mocha.js" time="0.003" failures="1">
-    <testcase name="Even handed - minute is divible by 2 should verify that the current minute is even" time="0.000" classname="should verify that the current minute is even">
+  <testsuite name="Even handed - minute is divible by 2" timestamp="2024-03-20T18:07:38" tests="1" file="/home/eli/Github/flake-factory/tests/mocha/mocha.js" time="0.002" failures="1">
+    <testcase name="Even handed - minute is divible by 2 should verify that the current minute is even" time="0.001" classname="should verify that the current minute is even">
       <failure message="Expected values to be strictly equal:
 
 1 !== 0
@@ -11,7 +11,7 @@
 
 1 !== 0
 
-    at process.processImmediate (node:internal/timers:471:21)
+    at process.processImmediate (node:internal/timers:478:21)
 
       + expected - actual
 
@@ -20,7 +20,7 @@
       ]]></failure>
     </testcase>
   </testsuite>
-  <testsuite name="Odd handed - minute is divible by 1" timestamp="2024-03-20T17:53:23" tests="1" file="/home/eli/Github/flake-factory/tests/mocha/mocha.js" time="0.000" failures="0">
+  <testsuite name="Odd handed - minute is divible by 1" timestamp="2024-03-20T18:07:38" tests="1" file="/home/eli/Github/flake-factory/tests/mocha/mocha.js" time="0.001" failures="0">
     <testcase name="Odd handed - minute is divible by 1 should verify that the current minute is odd" time="0.000" classname="should verify that the current minute is odd">
     </testcase>
   </testsuite>

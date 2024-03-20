@@ -25,10 +25,9 @@ jobs:
       #   - name: Trunk install
       #     uses: trunk-io/trunk-action/setup@latest
 
-      #   - name: Install Dependencies
-      #     run: |
-      #       trunk install
-      #       pnpm install
+        - name: Install Dependencies
+          run: |l
+            pnpm install
 
       - name: Run Tests
         run: npm test
