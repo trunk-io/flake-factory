@@ -19,7 +19,7 @@ jobs:
           node-version: 16.x
 
       - name: Trunk install
-        uses: trunk-io/trunk-action/setup@v1.1.10
+        uses: trunk-io/trunk-action/setup@latest
 
       - name: Install Dependencies
         run: |
