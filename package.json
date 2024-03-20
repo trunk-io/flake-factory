@@ -1,12 +1,14 @@
 {
-    "name": "Trunk Flake Factory",
-    "version": "1.0.0",
-    "description": "Code goes in...flaky tests come out",
-    "main": "index.js",
-    "scripts": {
-      "test": "mocha"
-    },
-    "devDependencies": {
-      "mocha": "^8.4.0"
-    }
+  "name": "Trunk Flake Factory",
+  "version": "1.0.0",
+  "description": "Code goes in...flaky tests come out",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha 'tests/mocha/**/*.ts' --reporter mocha-junit-reporter"
+  },
+  "devDependencies": {
+    "jest-junit": "^16.0.0",
+    "mocha": "^8.4.0",
+    "mocha-junit-reporter": "^2.0.0"
   }
+}
