@@ -56,3 +56,5 @@ rust-project.json
 
 # Vercel
 .vercel
+
+test-results.xml
