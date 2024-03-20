@@ -20,9 +20,9 @@ jobs:
         id: choose_secret
         run: |
           if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-            echo "::set-output name=secret_name::ELI_PAT"
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=secret_name::GITHUB_TOKEN"
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Pull Request
