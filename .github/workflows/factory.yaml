@@ -16,19 +16,11 @@ jobs:
       - name: Switch season
         run: src/flip
 
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v9
-        with:
-          author_name: Eli Schleifer
-          author_email: elischleifer@trunk.io
-          message: Rabbit Season
-          add: src/season.js
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Automated PR
-          title: Automated PR
-          body: This is an automated pull request.
-          branch: automated-pr
+          title: Rabbit Season
+          body: Rabbit Season
+          branch: eli/rabbit-season
