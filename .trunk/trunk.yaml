@@ -20,6 +20,8 @@ runtimes:
     - python@3.10.8
 
 lint:
+  enabled:
+    - eslint@9.0.0-beta.2
   ignore:
     - linters: [ALL]
       paths:

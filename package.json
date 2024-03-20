@@ -2,9 +2,10 @@
   "name": "Trunk Flake Factory",
   "version": "1.0.0",
   "description": "Code goes in...flaky tests come out",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha 'tests/mocha/**/*.ts' --reporter mocha-junit-reporter"
+    "test": "mocha 'tests/mocha/**/*.js' --reporter mocha-junit-reporter"
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
