@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "jest-test": "jest tests/jest/**/*.js",
+    "jest-test": "jest tests/jest/**/*.js --config=tests/jest/jest.config.json",
     "mocha-test": "mocha 'tests/mocha/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
   },
   "dependencies": {
