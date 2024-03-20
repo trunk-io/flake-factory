@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if grep -q 'Season.Rabbit' src/season.js; then
+	sed -i 's/Season.Rabbit/Season.Duck/g' src/season.js
+else
+	sed -i 's/Season.Duck/Season.Rabbit/g' src/season.js
+fi

@@ -2,6 +2,7 @@ name: PR Factory
 
 on:
   workflow_dispatch:
+
 #   schedule:
 #     - cron: "*/30 * * * *"
 
@@ -20,8 +21,8 @@ jobs:
         with:
           author_name: Eli Schleifer
           author_email: elischleifer@trunk.io
-          message: "Rabbit Season"
-          add: "src/season.js"
+          message: Rabbit Season
+          add: src/season.js
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
