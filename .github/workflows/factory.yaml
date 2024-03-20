@@ -1,10 +1,9 @@
 name: PR Factory
 
 on:
-  workflow_dispatch:
-
-#   schedule:
-#     - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+  schedule:
+    - cron: "*/30 * * * *"
 
 jobs:
   createPR:
@@ -21,7 +20,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.ELI_PAT }}
-          commit-message: Automated PR
+          commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
           title: ${{ steps.switch.outputs.season }}
           body: ${{ steps.switch.outputs.season }}
           branch: eli/season
