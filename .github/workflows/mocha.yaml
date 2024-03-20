@@ -17,18 +17,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 21.x
-          
+
       - uses: pnpm/action-setup@v3
-          with:
+        with:
           version: 8
 
-    #   - name: Trunk install
-    #     uses: trunk-io/trunk-action/setup@latest
+      #   - name: Trunk install
+      #     uses: trunk-io/trunk-action/setup@latest
 
-    #   - name: Install Dependencies
-    #     run: |
-    #       trunk install
-    #       pnpm install
+      #   - name: Install Dependencies
+      #     run: |
+      #       trunk install
+      #       pnpm install
 
       - name: Run Tests
         run: npm test
