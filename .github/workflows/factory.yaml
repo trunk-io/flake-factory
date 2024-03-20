@@ -1,8 +1,9 @@
 name: PR Factory
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"
+  workflow_dispatch:
+#   schedule:
+#     - cron: "*/30 * * * *"
 
 jobs:
   createPR:
@@ -10,6 +11,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Switch season
+        run: src/flip
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: Eli Schleifer
+          author_email: elischleifer@trunk.io
+          message: "Rabbit Season"
+          add: "src/season.js"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
