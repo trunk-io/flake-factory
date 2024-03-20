@@ -1,38 +1,18 @@
 const moment = require("moment");
 
 describe("Jest - Day of the Week Tests", () => {
-  test("today is Monday", () => {
+  test("today is Mon || Tues || Wed", () => {
     const today = moment().format("dddd");
-    expect(today).toBe("Monday");
+    expect(["Monday", "Tuesday", "Wednesday"]).toContain(today);
   });
 
-  test("today is Tuesday", () => {
+  test("today is Thursday or Friday", () => {
     const today = moment().format("dddd");
-    expect(today).toBe("Tuesday");
+    expect(["Thursday", "Friday"]).toContain(today);
   });
 
-  test("today is Wednesday", () => {
+  test("today is Saturday or Sunday", () => {
     const today = moment().format("dddd");
-    expect(today).toBe("Wednesday");
-  });
-
-  test("today is Thursday", () => {
-    const today = moment().format("dddd");
-    expect(today).toBe("Thursday");
-  });
-
-  test("today is Friday", () => {
-    const today = moment().format("dddd");
-    expect(today).toBe("Friday");
-  });
-
-  test("today is Saturday", () => {
-    const today = moment().format("dddd");
-    expect(today).toBe("Saturday");
-  });
-
-  test("today is Sunday", () => {
-    const today = moment().format("dddd");
-    expect(today).toBe("Sunday");
+    expect(["Saturday", "Sunday"]).toContain(today);
   });
 });
