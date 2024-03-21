@@ -12,51 +12,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: clean up dead symlink
-        shell: bash
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
+      - name: Switch season
+        id: switch
+        run: src/season/flip
+
+      - name: Merge existing PR
+        id: merge-existing
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          tools_path=".trunk/tools"
-          if [ -L "${tools_path}" ] && [ ! -e "${tools_path}" ] ; then
-            rm "${tools_path}"
+          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+            echo "PR_LABEL=rabbit" >> $GITHUB_ENV
+          else
+            echo "PR_LABEL=duck" >> $GITHUB_ENV
+          fi
+          src/season/merge_next
+
+      - name: Choose secret
+        id: choose_secret
+        run: |
+          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+          else
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
           fi
 
-      - name: trunk install
-        uses: trunk-io/trunk-action/install@326cd38e8638d5836a71c23a38ab8e9d61260e7c
-
-      - name: which gh
-        shell: bash
-        run: which gh
-
-      # - name: Switch season
-      #   id: switch
-      #   run: src/season/flip
-
-      # - name: Merge existing PR
-      #   id: merge-existing
-      #   env:
-      #     GH_TOKEN: ${{ github.token }}
-      #   run: |
-      #     if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-      #       echo "PR_LABEL=rabbit" >> $GITHUB_ENV
-      #     else
-      #       echo "PR_LABEL=duck" >> $GITHUB_ENV
-      #     fi
-      #     src/season/merge_next
-
-      # - name: Choose secret
-      #   id: choose_secret
-      #   run: |
-      #     if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-      #       echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
-      #     else
-      #       echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
-      #     fi
-
-      # - name: Create Pull Request
-      #   uses: peter-evans/create-pull-request@v6
-      #   with:
-      #     token: ${{ secrets[steps.choose_secret.outputs.secret_name] }}
-      #     commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
-      #     title: ${{ steps.switch.outputs.season }}
-      #     body: ${{ steps.switch.outputs.season }}
-      #     branch: eli/season
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets[steps.choose_secret.outputs.secret_name] }}
+          commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
+          title: ${{ steps.switch.outputs.season }}
+          body: ${{ steps.switch.outputs.season }}
+          branch: eli/season
