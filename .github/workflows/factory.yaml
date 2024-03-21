@@ -15,40 +15,40 @@ jobs:
       - name: trunk install
         uses: trunk-io/trunk-action/install@cb04be1525f1752cd780827f4e0e59877171e496
 
-      - name: Add .trunk/tools to path
-        shell: bash
-        run: echo ".trunk/tools" >> $GITHUB_PATH
+      # - name: Add .trunk/tools to path
+      #   shell: bash
+      #   run: echo ".trunk/tools" >> $GITHUB_PATH
 
-      - name: Switch season
-        id: switch
-        run: src/season/flip
+      # - name: Switch season
+      #   id: switch
+      #   run: src/season/flip
 
-      - name: Merge existing PR
-        id: merge-existing
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-            echo "PR_LABEL=rabbit" >> $GITHUB_ENV 
-          else
-            echo "PR_LABEL=duck" >> $GITHUB_ENV
-          fi
-          src/season/merge_next
+      # - name: Merge existing PR
+      #   id: merge-existing
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      #   run: |
+      #     if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+      #       echo "PR_LABEL=rabbit" >> $GITHUB_ENV
+      #     else
+      #       echo "PR_LABEL=duck" >> $GITHUB_ENV
+      #     fi
+      #     src/season/merge_next
 
-      - name: Choose secret
-        id: choose_secret
-        run: |
-          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
-          else
-            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
-          fi
+      # - name: Choose secret
+      #   id: choose_secret
+      #   run: |
+      #     if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+      #       echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+      #     else
+      #       echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+      #     fi
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets[steps.choose_secret.outputs.secret_name] }}
-          commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
-          title: ${{ steps.switch.outputs.season }}
-          body: ${{ steps.switch.outputs.season }}
-          branch: eli/season
+      # - name: Create Pull Request
+      #   uses: peter-evans/create-pull-request@v6
+      #   with:
+      #     token: ${{ secrets[steps.choose_secret.outputs.secret_name] }}
+      #     commit-message: Everyone knows its ${{ steps.switch.outputs.season }}
+      #     title: ${{ steps.switch.outputs.season }}
+      #     body: ${{ steps.switch.outputs.season }}
+      #     branch: eli/season
