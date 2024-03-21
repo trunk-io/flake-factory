@@ -12,28 +12,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: remove dead tools
+      - name: clean up dead symlink
         shell: bash
-        run: rm -rf .trunk/tools
+        run: |
+          tools_path=".trunk/tools"
+          if [ -L "${tools_path}" ] && [ ! -e "${tools_path}" ] ; then
+            rm "${tools_path}"
+          fi
 
       - name: trunk install
         uses: trunk-io/trunk-action/install@326cd38e8638d5836a71c23a38ab8e9d61260e7c
-
-      - name: Add .trunk/tools to pathz
-        shell: bash
-        run: echo "${PWD}/.trunk/tools" >> $GITHUB_PATH
-
-      - name: Add .trunk/tools to pathz33
-        shell: bash
-        run: echo "${PWD}/.trunk/tools"
-
-      - name: which trunk
-        shell: bash
-        run: which trunk
-
-      - name: which trunk
-        shell: bash
-        run: echo ${PWD}
 
       - name: which gh
         shell: bash
