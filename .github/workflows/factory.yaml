@@ -24,12 +24,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-            PR_LABEL=rabbit
-          else
-            PR_LABEL=duck
-          fi
-          src/season/merge_next --pr-label=$PR_LABEL
+          src/season/merge_next --pr-label='${{ steps.switch.outputs.season }}'
 
       - name: Choose secret
         id: choose_secret
