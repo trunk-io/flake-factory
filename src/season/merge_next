@@ -2,8 +2,8 @@
 
 import json
 import os
-import re
 import subprocess
+import sys
 
 PR_LABEL = os.getenv("PR_LABEL")
 
@@ -14,7 +14,7 @@ process = subprocess.run(
 
 if process.returncode != 0:
     print(f"Failed to get list of pull requests with label {PR_LABEL}")
-    exit(1)
+    sys.exit(1)
 
 # Parse the output as JSON
 output = process.stdout
@@ -28,6 +28,7 @@ if data:
     merge_process = subprocess.run(
         merge_command,
         shell=True,
+        check=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         universal_newlines=True,
@@ -38,5 +39,7 @@ if data:
     else:
         print(f"Failed to merge pull request number {pr}")
         print(f"Error: {merge_process.stderr}")
+        sys.exit(1)
 else:
     print(f"No record found with label {PR_LABEL}")
+    sys.exit(1)
