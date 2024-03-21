@@ -32,8 +32,8 @@ process = subprocess.run(
 )
 
 if process.returncode != 0:
-    print(f"Failed to get list of pull requests with label {PR_LABEL}")
-    sys.exit(1)
+    print(f"No pull requests have label: {PR_LABEL}. Nothing to merge")
+    sys.exit(0)
 
 # Parse the output as JSON
 output = process.stdout
