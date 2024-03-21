@@ -24,7 +24,7 @@ jobs:
           else
             echo "PR_LABEL=duck" >> $GITHUB_ENV
           fi
-          src/season/merge
+          src/season/merge_next
 
       - name: Choose secret
         id: choose_secret
