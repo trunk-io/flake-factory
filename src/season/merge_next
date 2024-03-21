@@ -16,15 +16,15 @@ for lbl in labels:
 
     if process.returncode != 0:
         continue
-    else:
-        # Parse the output as JSON
-        output = process.stdout
-        data = json.loads(output)
 
-        if data:
-            pr = data[0]["number"]
-            pr_label = lbl
-            break
+    # Parse the output as JSON
+    output = process.stdout
+    data = json.loads(output)
+
+    if data:
+        pr = data[0]["number"]
+        pr_label = lbl
+        break
 
 if pr_label is None:
     print("No PR found with label duck or rabbit")
