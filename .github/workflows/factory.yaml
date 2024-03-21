@@ -12,8 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trunk install
+      - name: Trunk Setup
         uses: trunk-io/trunk-action/setup@main
+
+      - name: Trunk Install
         run: trunk install
 
       - name: Switch season
