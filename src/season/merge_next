@@ -1,11 +1,28 @@
 #!/usr/bin/env python3
 
+import argparse
 import json
 import os
 import subprocess
 import sys
 
-PR_LABEL = os.getenv("PR_LABEL")
+# Create the parser
+parser = argparse.ArgumentParser(
+    description="Merge pull requests with a specific label."
+)
+
+# Add the arguments
+parser.add_argument(
+    "--pr-label",
+    type=str,
+    required=True,
+    help="The label of the pull requests to merge.",
+)
+
+# Parse the arguments
+args = parser.parse_args()
+
+PR_LABEL = args.pr_label
 
 command = f"gh pr list --label {PR_LABEL} --json number"
 process = subprocess.run(
@@ -42,4 +59,3 @@ if data:
         sys.exit(1)
 else:
     print(f"No record found with label {PR_LABEL}")
-    sys.exit(1)

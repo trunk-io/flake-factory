@@ -25,11 +25,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
-            echo "PR_LABEL=rabbit" >> $GITHUB_ENV
+            PR_LABEL=rabbit
           else
-            echo "PR_LABEL=duck" >> $GITHUB_ENV
+            PR_LABEL=duck
           fi
-          src/season/merge_next
+          src/season/merge_next --pr-label=$PR_LABEL
 
       - name: Choose secret
         id: choose_secret
