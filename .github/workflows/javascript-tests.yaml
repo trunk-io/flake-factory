@@ -22,9 +22,6 @@ jobs:
         with:
           version: 8
 
-      #   - name: Trunk install
-      #     uses: trunk-io/trunk-action/setup@latest
-
       - name: Install Dependencies
         run: |
           pnpm install

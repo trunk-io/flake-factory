@@ -7,10 +7,10 @@ with open("src/season.js", "r+", encoding="utf-8") as file:
 
     if "return Animal.Rabbit" in content:
         content = re.sub("Animal.Rabbit", "Animal.Duck", content)
-        SEASON = "Duck Season"
+        SEASON = "Duck"
     else:
         content = re.sub("Animal.Duck", "Animal.Rabbit", content)
-        SEASON = "Rabbit Season"
+        SEASON = "Rabbit"
 
     file.seek(0)
     file.write(content)
