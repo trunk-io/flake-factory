@@ -12,15 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Trunk Setup
-        uses: trunk-io/trunk-action/setup@main
-
-      - name: Trunk Install
-        run: ${TRUNK_PATH} install
-
-      - name: Add install tools to path
-        shell: bash
-        run: echo ".trunk/tools" >> $GITHUB_PATH
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@09373f55d2dc3829d325c68e871035f17ae6dba3
 
       - name: Switch season
         id: switch
@@ -28,6 +21,8 @@ jobs:
 
       - name: Merge existing PR
         id: merge-existing
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
             echo "PR_LABEL=rabbit" >> $GITHUB_ENV 
