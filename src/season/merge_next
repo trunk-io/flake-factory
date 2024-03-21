@@ -21,10 +21,10 @@ parser.add_argument(
 # Parse the arguments
 args = parser.parse_args()
 
-if args.pr_label.lower() == "rabbit season":
-    PR_LABEL = "rabbit"
-else:
+if args.pr_label.lower() == "rabbit":
     PR_LABEL = "duck"
+else:
+    PR_LABEL = "rabbit"
 
 command = f"gh pr list --label {PR_LABEL} --json number"
 process = subprocess.run(
