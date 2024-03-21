@@ -14,6 +14,7 @@ jobs:
 
       - name: Trunk install
         uses: trunk-io/trunk-action/setup@main
+        run: trunk install
 
       - name: Switch season
         id: switch
