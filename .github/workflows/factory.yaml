@@ -18,6 +18,10 @@ jobs:
       - name: Trunk Install
         run: ${TRUNK_PATH} install
 
+      - name: Add install tools to path
+        shell: bash
+        run: echo ".trunk/tools" >> $GITHUB_PATH
+
       - name: Switch season
         id: switch
         run: src/season/flip
