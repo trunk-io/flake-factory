@@ -12,6 +12,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: remove dead tools
+        shell: bash
+        run: rm -rf .trunk/tools
+
       - name: trunk install
         uses: trunk-io/trunk-action/install@326cd38e8638d5836a71c23a38ab8e9d61260e7c
 
