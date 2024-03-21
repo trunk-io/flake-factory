@@ -14,7 +14,17 @@ jobs:
 
       - name: Switch season
         id: switch
-        run: src/flip
+        run: src/season/flip
+
+      - name: Merge existing PR
+        id: merge-existing
+        run: |
+          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+            echo "PR_LABEL=rabbit" >> $GITHUB_ENV 
+          else
+            echo "PR_LABEL=duck" >> $GITHUB_ENV
+          fi
+          src/season/merge
 
       - name: Choose secret
         id: choose_secret
