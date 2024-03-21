@@ -17,7 +17,7 @@ jobs:
 
       - name: Add .trunk/tools to pathz
         shell: bash
-        run: echo ".trunk/tools" >> $GITHUB_PATH
+        run: echo "${PWD}/.trunk/tools" >> $GITHUB_PATH
 
       - name: which trunk
         shell: bash
