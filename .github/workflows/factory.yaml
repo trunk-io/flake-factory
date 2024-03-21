@@ -6,7 +6,21 @@ on:
     - cron: "*/30 * * * *"
 
 jobs:
-  createPR:
+  merge-pr:
+    runs-on: [self-hosted, macOS]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
+      - name: Merge active change
+        id: merge
+        run: src/season/merge_next
+
+  create-pr:
+    needs: merge-pr
     runs-on: [self-hosted, macOS]
     steps:
       - name: Checkout code
@@ -18,13 +32,6 @@ jobs:
       - name: Switch season
         id: switch
         run: src/season/flip
-
-      - name: Merge existing PR
-        id: merge-existing
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          src/season/merge_next --pr-label='${{ steps.switch.outputs.season }}'
 
       - name: Choose secret
         id: choose_secret

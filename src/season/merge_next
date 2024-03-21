@@ -1,63 +1,51 @@
 #!/usr/bin/env python3
 
-import argparse
 import json
 import subprocess
 import sys
 
-# Create the parser
-parser = argparse.ArgumentParser(
-    description="Merge pull requests with a specific label."
-)
+# what is current pr open for season switch
+labels = ["rabbit", "duck"]
 
-# Add the arguments
-parser.add_argument(
-    "--pr-label",
-    type=str,
-    required=True,
-    help="The label of the pull requests to merge.",
-)
-
-# Parse the arguments
-args = parser.parse_args()
-
-if args.pr_label.lower() == "rabbit":
-    PR_LABEL = "duck"
-else:
-    PR_LABEL = "rabbit"
-
-command = f"gh pr list --label {PR_LABEL} --json number"
-process = subprocess.run(
-    command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True
-)
-
-if process.returncode != 0:
-    print(f"No pull requests have label: {PR_LABEL}. Nothing to merge")
-    sys.exit(0)
-
-# Parse the output as JSON
-output = process.stdout
-data = json.loads(output)
-
-if data:
-    pr = data[0]["number"]
-
-    # Merge the pull request
-    merge_command = f"gh pr merge {pr} --merge"
-    merge_process = subprocess.run(
-        merge_command,
-        shell=True,
-        check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        universal_newlines=True,
+pr_label = None
+for lbl in labels:
+    command = f"gh pr list --label {lbl} --json number"
+    process = subprocess.run(
+        command, shell=True, check=True, stdout=subprocess.PIPE, universal_newlines=True
     )
 
-    if merge_process.returncode == 0:
-        print(f"Merged pull request number {pr}")
+    if process.returncode != 0:
+        continue
     else:
-        print(f"Failed to merge pull request number {pr}")
-        print(f"Error: {merge_process.stderr}")
-        sys.exit(1)
+        # Parse the output as JSON
+        output = process.stdout
+        data = json.loads(output)
+
+        if data:
+            pr = data[0]["number"]
+            pr_label = lbl
+            break
+        else:
+            continue
+
+if pr_label is None:
+    print("No PR found with label duck or rabbit")
+    sys.exit(0)
+
+# Merge the pull request
+merge_command = f"gh pr merge {pr} --merge"
+merge_process = subprocess.run(
+    merge_command,
+    shell=True,
+    check=True,
+    stdout=subprocess.PIPE,
+    stderr=subprocess.PIPE,
+    universal_newlines=True,
+)
+
+if merge_process.returncode == 0:
+    print(f"Merged pull request number {pr}")
 else:
-    print(f"No record found with label {PR_LABEL}")
+    print(f"Failed to merge pull request number {pr}")
+    print(f"Error: {merge_process.stderr}")
+    sys.exit(1)
