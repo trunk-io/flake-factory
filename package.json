@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "jasmine-test": "jasmine 'tests/jasmine/**/*.js'",
-    "jest-test": "jest tests/jest/**/*.js --config=tests/jest/jest.config.json",
-    "mocha-test": "mocha 'tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
+    "jasmine-test": "jasmine 'javascript/tests/jasmine/**/*.js'",
+    "jest-test": "jest javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json",
+    "mocha-test": "mocha 'javascript/tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
   },
   "dependencies": {
     "jasmine": "^5.1.0",
