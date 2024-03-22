@@ -2,7 +2,7 @@ import os
 
 from behave import *
 
-test_file = "python/behave/test_data/retry.data"
+test_file = "~/retry.data"
 
 
 @given("start the behave test")
