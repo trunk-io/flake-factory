@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         id: merge
-        run: src/season/merge_next
+        run: javascript/src/season/merge_next
 
   create-pr:
     needs: merge-pr
@@ -29,13 +29,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-        
+
       - name: trunk install
         uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
 
       - name: Switch season
         id: switch
-        run: src/season/flip
+        run: javascript/src/season/flip
 
       - name: Choose secret
         id: choose_secret
