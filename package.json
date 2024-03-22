@@ -7,7 +7,7 @@
   "scripts": {
     "jasmine-test": "jasmine 'tests/jasmine/**/*.js'",
     "jest-test": "jest tests/jest/**/*.js --config=tests/jest/jest.config.json",
-    "mocha-test": "mocha 'tests/mocha/**/*.js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
+    "mocha-test": "mocha 'tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=./tests/mocha/mocha_test.xml"
   },
   "dependencies": {
     "jasmine": "^5.1.0",
@@ -19,6 +19,7 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "chai": "^5.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jest": "^27.9.0",
