@@ -25,7 +25,8 @@ jobs:
       - name: Run pytest tests
         run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
 
-      - name: Run pytest tests
+      - name: Run robotframework tests
+        if: ${{ always() }}
         run:
           pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
           python/robotframework/**
