@@ -63,3 +63,6 @@ rust-project.json
 
 # virtual env
 venv
+
+# retry data created by tests
+retry.data
