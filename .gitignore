@@ -60,3 +60,6 @@ rust-project.json
 # Test output files
 **/*_test.xml
 **/junitresults*
+
+# virtual env
+venv

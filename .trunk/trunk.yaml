@@ -3,6 +3,8 @@
 version: 0.1
 cli:
   version: 1.21.0
+  shell_hooks:
+    enforce: true
 
 plugins:
   sources:
@@ -37,5 +39,6 @@ actions:
 tools:
   runtimes:
     - node
+    - python
   enabled:
     - pnpm@8.15.5
