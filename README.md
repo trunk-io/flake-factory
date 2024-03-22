@@ -23,7 +23,7 @@ to flake.
 Our goal is to make engineering faster, more efficient and dare we say - more fun. This repository
 will hopefully allow our community to share ideas on the best tools and best practices/workflows to
 make everyone's job of building code a little bit easier, a little bit faster, and maybe in the
-process - a little bit more fun. Read more about [Trunk Check](https://trunk.io/check).
+process - a little bit more fun. Read more about [Trunk Flaky](https://trunk.io/flaky-tests).
 
 
 [slack]: https://slack.trunk.io
