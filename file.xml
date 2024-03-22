@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="0.041" timestamp="2024-03-22T19:22:10.673820" hostname="eli-linux"><testcase classname="python.random_test" name="test_95_percent" time="0.000" /><testcase classname="python.random_test" name="test_coin_toss" time="0.000"><failure message="assert 97 &lt;= 50">def test_coin_toss():
+        randomNumber = secrets.randbelow(100)
+&gt;       assert randomNumber &lt;= 50
+E       assert 97 &lt;= 50
+
+python/random_test.py:10: AssertionError</failure></testcase><testcase classname="python.random_test" name="test_20_percent" time="0.000"><failure message="assert 57 &lt;= 20">def test_20_percent():
+        randomNumber = secrets.randbelow(100)
+&gt;       assert randomNumber &lt;= 20
+E       assert 57 &lt;= 20
+
+python/random_test.py:14: AssertionError</failure></testcase><testcase classname="python.random_test" name="test_10_percent" time="0.000" /></testsuite></testsuites>
