@@ -2,7 +2,7 @@
 
 import re
 
-with open("src/season.js", "r+", encoding="utf-8") as file:
+with open("javascript/src/season.js", "r+", encoding="utf-8") as file:
     content = file.read()
 
     if "return Animal.Rabbit" in content:
