@@ -46,7 +46,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: wait
+        run: sleep 30
+
       - name: Rerun failed jobs in the current workflow
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run rerun ${{ github.run_id }} --failed
+        run: gh run rerun ${{ github.run_id }}
