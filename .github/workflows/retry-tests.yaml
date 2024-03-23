@@ -1,0 +1,81 @@
+name: Run Behave Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run behave tests
+        run: behave --junit-directory=python/results --junit python/behave
+
+      - name: Flaky Test Reporter
+        if: ${{ always() }}
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: "**/python/results/*-behave.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+        env:
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
+        continue-on-error: true
+
+  # # Investigate how to get this working - seems like gh run rerun doesn't work from inside that exact run. Maybethis information could be passed along to another
+  # # workflow
+  # retry-failed-test:
+  #   runs-on: [self-hosted, linux]
+  #   needs: [test]
+  #   if: failure()
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - name: trunk install
+  #       uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
+  #     - name: Get Current Job Log URL
+  #       uses: Tiryoh/gha-jobid-action@v1
+  #       id: jobs
+  #       with:
+  #         github_token: ${{ github.token }}
+  #         job_name: "test"
+
+  #     - name: Rerun failed jobs in the current workflow
+  #       env:
+  #         GH_TOKEN: ${{ github.token }}
+  #       run: gh run rerun --job ${{ steps.jobs.outputs.job_id }}
+
+  re-run:
+    runs-on: [self-hosted, linux]
+    needs: test
+    if: failure() && fromJSON(github.run_attempt) < 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
+      - name: trigger job re-run
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          GH_DEBUG: api
+        run: gh workflow run rerun.yml -F run_id=${{ github.run_id }}
