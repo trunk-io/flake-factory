@@ -56,8 +56,7 @@ jobs:
         id: jobs
         with:
           github_token: ${{ github.token }}
-          job_name: "test" # input job.<job-id>
-          #job_name: "${{ github.job }}"  # if job.<job-id>.name is not specifie
+          job_name: "test"
 
       - name: Rerun failed jobs in the current workflow
         env:
