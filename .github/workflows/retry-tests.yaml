@@ -51,7 +51,15 @@ jobs:
       - name: trunk install
         uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
 
+      - name: Get Current Job Log URL
+        uses: Tiryoh/gha-jobid-action@v1
+        id: jobs
+        with:
+          github_token: ${{ github.token }}
+          job_name: "test" # input job.<job-id>
+          #job_name: "${{ github.job }}"  # if job.<job-id>.name is not specifie
+
       - name: Rerun failed jobs in the current workflow
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run rerun --job ${{ github.job_id }}
+        run: gh run rerun --job ${{ steps.jobs.outputs.job_id }}
