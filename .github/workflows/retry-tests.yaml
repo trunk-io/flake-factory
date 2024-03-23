@@ -54,4 +54,4 @@ jobs:
       - name: Rerun failed jobs in the current workflow
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh run rerun ${{ github.job_id }}
+        run: gh run rerun --job ${{ github.job_id }}
