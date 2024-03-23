@@ -68,6 +68,11 @@ jobs:
     needs: test
     if: failure() && fromJSON(github.run_attempt) < 5
     steps:
+      - uses: actions/checkout@v4
+
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
       - name: trigger job re-run
         env:
           GH_REPO: ${{ github.repository }}
