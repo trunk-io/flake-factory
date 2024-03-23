@@ -39,8 +39,8 @@ jobs:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
         continue-on-error: true
 
-  rerun-failed-jobs:
-    runs-on: ubuntu-latest
+  retry-failed-test:
+    runs-on: [self-hosted, linux]
     needs: [test]
     if: failure()
     steps:
