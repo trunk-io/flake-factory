@@ -39,30 +39,6 @@ jobs:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
         continue-on-error: true
 
-  # # Investigate how to get this working - seems like gh run rerun doesn't work from inside that exact run. Maybethis information could be passed along to another
-  # # workflow
-  # retry-failed-test:
-  #   runs-on: [self-hosted, linux]
-  #   needs: [test]
-  #   if: failure()
-  #   steps:
-  #     - uses: actions/checkout@v4
-
-  #     - name: trunk install
-  #       uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
-
-  #     - name: Get Current Job Log URL
-  #       uses: Tiryoh/gha-jobid-action@v1
-  #       id: jobs
-  #       with:
-  #         github_token: ${{ github.token }}
-  #         job_name: "test"
-
-  #     - name: Rerun failed jobs in the current workflow
-  #       env:
-  #         GH_TOKEN: ${{ github.token }}
-  #       run: gh run rerun --job ${{ steps.jobs.outputs.job_id }}
-
   re-run:
     runs-on: [self-hosted, linux]
     needs: test
