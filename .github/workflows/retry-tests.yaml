@@ -1,4 +1,4 @@
-name: Run tests with automatic 'retry' button
+name: Run Behave Tests
 
 on:
   push:
