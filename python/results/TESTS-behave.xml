@@ -1,0 +1,17 @@
+<testsuite name="behave.flaky test example written in behave" tests="1" errors="0" failures="1" skipped="0" time="1.00175" timestamp="2024-03-23T00:00:53.062346" hostname="eli-linux"><testcase classname="behave.flaky test example written in behave" name="run a simple test that fails until retried a third time" status="failed" time="1.00175"><failure type="AssertionError" message="File did not contain the string Hello World, added it and failed">
+<![CDATA[
+Failing step: Then file existed - verify it contains the string Hello World ... failed in 0.501s
+Location: python/behave/behave.feature:6
+Assertion Failed: File did not contain the string Hello World, added it and failed]]>
+</failure><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: run a simple test that fails until retried a third time
+    Given start the behave test ... passed in 0.200s
+    When read file - if its not there - create it and fail ... passed in 0.301s
+    Then file existed - verify it contains the string Hello World ... failed in 0.501s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>
