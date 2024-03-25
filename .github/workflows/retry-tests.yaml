@@ -1,4 +1,4 @@
-name: Run Retryable Tests
+name: Retryable Tests
 
 on:
   push:
