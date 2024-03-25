@@ -1,4 +1,4 @@
-name: Run Javascript Tests
+name: Javascript Tests
 
 on:
   push:

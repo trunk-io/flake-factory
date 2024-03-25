@@ -1,4 +1,4 @@
-name: Run Behave Tests
+name: Retryable Tests
 
 on:
   push:
@@ -22,7 +22,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run behave tests
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+
+      - name: test
+        id: test
         run: behave --junit-directory=python/results --junit python/behave
 
       - name: Flaky Test Reporter
@@ -39,17 +43,9 @@ jobs:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
         continue-on-error: true
 
-  re-run:
-    runs-on: [self-hosted, linux]
-    needs: test
-    if: failure() && fromJSON(github.run_attempt) < 5
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: trunk install
-        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
-
       - name: trigger job re-run
+        if:
+          ${{ failure() && steps.test.conclusion == 'failure' && fromJSON(github.run_attempt) < 5}}
         env:
           GH_REPO: ${{ github.repository }}
           GH_TOKEN: ${{ github.token }}
