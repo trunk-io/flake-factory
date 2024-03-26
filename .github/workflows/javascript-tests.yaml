@@ -36,7 +36,6 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run mocha-test
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
@@ -51,7 +50,6 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jest-test
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
@@ -66,6 +64,5 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jasmine-test
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io

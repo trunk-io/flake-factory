@@ -32,6 +32,5 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io

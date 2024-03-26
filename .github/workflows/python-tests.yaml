@@ -32,7 +32,6 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
@@ -45,7 +44,6 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          continue-on-error: false
           run:
             pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
             python/robotframework/**

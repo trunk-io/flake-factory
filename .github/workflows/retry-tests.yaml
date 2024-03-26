@@ -36,7 +36,6 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: behave --junit-directory=python/results --junit python/behave
-          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
