@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Mocha Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -37,13 +37,13 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run mocha-test
+          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: false
 
       - name: Run Jest Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -52,13 +52,13 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jest-test
+          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: false
 
       - name: Run Jasmine Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -67,6 +67,6 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jasmine-test
+          continue-on-error: false
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: false
