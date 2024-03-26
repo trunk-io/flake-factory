@@ -5,7 +5,7 @@ use std::fs;
 
 fn main() {
     let path = "rust/tests/new_test.rs";
-    let content = fs::read_to_string(&path).expect("Could not read file");
+    let content = fs::read_to_string(path).expect("Could not read file");
 
     let now = Utc::now();
     let month = now.month();
@@ -45,5 +45,5 @@ fn main() {
         .as_str(),
     );
 
-    fs::write(&path, new_content.into_owned()).expect("Could not write file");
+    fs::write(path, new_content.into_owned()).expect("Could not write file");
 }

@@ -30,7 +30,7 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
-          junit-paths: "rust/**/nextest/ci/*junit.xml"
+          junit-paths: rust/**/nextest/ci/*junit.xml
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
