@@ -42,5 +42,5 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
         env:
-          TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io
         continue-on-error: true
