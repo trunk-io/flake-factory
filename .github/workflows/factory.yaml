@@ -46,7 +46,7 @@ jobs:
       - name: choose secret
         id: choose_secret
         run: |
-          if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
+          if [[ "${{ steps.switch.outputs.season }}" == "Duck" ]]; then
             echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
           else
             echo "secret_name=JOSH_PAT" >> $GITHUB_OUTPUT
