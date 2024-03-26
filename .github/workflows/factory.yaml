@@ -30,14 +30,20 @@ jobs:
         with:
           ref: main
 
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+
       - name: trunk install
         uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
 
-      - name: Switch season
+      - name: run switch season
         id: switch
         run: javascript/src/season/flip
 
-      - name: Choose secret
+      - name: run test generator
+        run: cargo run --manifest-path=./rust/Cargo.toml
+
+      - name: choose secret
         id: choose_secret
         run: |
           if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
