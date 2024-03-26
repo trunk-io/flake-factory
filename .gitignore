@@ -60,3 +60,10 @@ rust-project.json
 # Test output files
 **/*_test.xml
 **/junitresults*
+
+# virtual env
+venv
+
+# retry data created by tests
+retry.data
+TESTS-behave.xml

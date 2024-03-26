@@ -1,0 +1,40 @@
+name: Rust Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Build
+        run: cargo build -q --all --manifest-path=./rust/Cargo.toml
+
+      - name: Install nextest
+        run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+
+      - name: Run tests
+        run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
+
+      - name: Flaky Test Reporter
+        if: ${{ always() }}
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: rust/**/nextest/ci/*junit.xml
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+        env:
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io/v1/metrics/createBundleUpload
+        continue-on-error: true

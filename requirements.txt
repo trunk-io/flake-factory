@@ -1,0 +1,4 @@
+pytest
+robotframework
+robotframework-pabot
+behave

@@ -19,7 +19,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         id: merge
-        run: src/season/merge_next
+        run: javascript/src/season/merge_next
 
   create-pr:
     needs: merge-pr
@@ -29,21 +29,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-        
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+
       - name: trunk install
         uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
 
-      - name: Switch season
+      - name: run switch season
         id: switch
-        run: src/season/flip
+        run: javascript/src/season/flip
 
-      - name: Choose secret
+      - name: run test generator
+        run: cargo run --manifest-path=./rust/Cargo.toml
+
+      - name: choose secret
         id: choose_secret
         run: |
           if [[ "${{ steps.switch.outputs.season }}" == "Duck Season" ]]; then
             echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
           else
-            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
+            echo "secret_name=JOSH_PAT" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Pull Request

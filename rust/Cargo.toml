@@ -1,0 +1,13 @@
+[package]
+name = "rust-flake-factory"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+chrono = "0.4.19"
+chrono-tz = "0.8.6"
+regex = "1.10.4"
+
+[[bin]]
+name = "generator"
+path = "src/generator.rs"
