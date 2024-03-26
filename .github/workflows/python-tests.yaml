@@ -37,6 +37,7 @@ jobs:
 
       - name: Run robotframework tests
         uses: trunk-io/analytics-uploader@main
+        if: ${{ always() }}
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml"
