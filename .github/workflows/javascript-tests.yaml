@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Mocha Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/fix-script
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -43,7 +43,7 @@ jobs:
 
       - name: Run Jest Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/fix-script
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -58,7 +58,7 @@ jobs:
 
       - name: Run Jasmine Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/fix-script
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
