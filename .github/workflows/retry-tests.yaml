@@ -27,7 +27,6 @@ jobs:
 
       - name: test
         id: test
-        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.

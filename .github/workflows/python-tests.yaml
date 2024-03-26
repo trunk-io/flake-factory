@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest tests
-        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml"
@@ -37,8 +37,7 @@ jobs:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run robotframework tests
-        if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml"

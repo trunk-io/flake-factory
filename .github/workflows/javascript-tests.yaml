@@ -27,7 +27,6 @@ jobs:
           pnpm install
 
       - name: Run Mocha Tests
-        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
@@ -43,7 +42,7 @@ jobs:
 
       - name: Run Jest Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
@@ -58,7 +57,7 @@ jobs:
 
       - name: Run Jasmine Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@github/workflows/python-tests.yaml
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
