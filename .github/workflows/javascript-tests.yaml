@@ -39,7 +39,7 @@ jobs:
 
       - name: Flaky Test Reporter
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
