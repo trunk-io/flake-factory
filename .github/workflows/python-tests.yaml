@@ -23,16 +23,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest tests
-        run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
-
-      - name: Run robotframework tests
-        if: ${{ always() }}
-        run:
-          pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
-          python/robotframework/**
-
-      - name: Flaky Test Reporter
-        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
@@ -41,6 +31,22 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: true
+
+      - name: Run robotframework tests
+        uses: trunk-io/analytics-uploader@main
+        if: ${{ always() }}
+        with:
+          # Path to your test results.
+          junit-paths: "**/*_test.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run:
+            pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
+            python/robotframework/**
+        env:
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io

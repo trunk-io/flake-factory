@@ -27,17 +27,19 @@ jobs:
           pnpm install
 
       - name: Run Mocha Tests
-        run: npm run mocha-test
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: npm run mocha-test
+        env:
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run Jest Tests
-        if: ${{ always() }}
-        run: npm run jest-test
-
-      - name: Run Jasmine Tests
-        if: ${{ always() }}
-        run: npm run jasmine-test
-
-      - name: Flaky Test Reporter
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
@@ -47,6 +49,20 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: npm run jest-test
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: true
+
+      - name: Run Jasmine Tests
+        if: ${{ always() }}
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: npm run jasmine-test
+        env:
+          TRUNK_API_ADDRESS: https://api.trunk-staging.io
