@@ -27,7 +27,7 @@ jobs:
 
       - name: test
         id: test
-        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
+        uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
           junit-paths: "**/python/results/*-behave.xml"

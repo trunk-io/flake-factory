@@ -23,7 +23,7 @@ jobs:
         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
 
       - name: Run tests
-        uses: trunk-io/analytics-uploader@gabe/conditional-continue-on-error
+        uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
           junit-paths: rust/**/nextest/ci/*junit.xml
