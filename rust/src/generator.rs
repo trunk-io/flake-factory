@@ -1,13 +1,13 @@
 use chrono::Datelike;
-use chrono::Utc;
+use chrono::Local;
 use regex::Regex;
 use std::fs;
 
 fn main() {
-    let path = "rust/tests/new_test.rs";
+    let path = "rust/tests/new_tests.rs";
     let content = fs::read_to_string(path).expect("Could not read file");
 
-    let now = Utc::now();
+    let now = Local::now().with_timezone(&chrono_tz::America::Los_Angeles);
     let month = now.month();
     let day = now.day();
 
