@@ -39,6 +39,7 @@ jobs:
           run: npm run mocha-test
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
+        continue-on-error: false
 
       - name: Run Jest Tests
         if: ${{ always() }}
@@ -53,6 +54,7 @@ jobs:
           run: npm run jest-test
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
+        continue-on-error: false
 
       - name: Run Jasmine Tests
         if: ${{ always() }}
@@ -67,3 +69,4 @@ jobs:
           run: npm run jasmine-test
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
+        continue-on-error: false

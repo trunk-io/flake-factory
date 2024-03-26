@@ -34,6 +34,7 @@ jobs:
           run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
+        continue-on-error: false
 
       - name: Run robotframework tests
         if: ${{ always() }}
@@ -50,3 +51,4 @@ jobs:
             python/robotframework/**
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
+        continue-on-error: false
