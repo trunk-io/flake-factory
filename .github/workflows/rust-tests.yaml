@@ -23,7 +23,7 @@ jobs:
         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
 
       - name: Run tests
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/update-version
         with:
           # Path to your test results.
           junit-paths: rust/**/nextest/ci/*junit.xml

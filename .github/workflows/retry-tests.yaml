@@ -27,7 +27,7 @@ jobs:
 
       - name: test
         id: test
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/update-version
         with:
           # Path to your test results.
           junit-paths: "**/python/results/*-behave.xml"

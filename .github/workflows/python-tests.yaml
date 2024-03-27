@@ -23,7 +23,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest tests
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/update-version
         with:
           # Path to your test results.
           junit-paths: "**/*_test.xml"
@@ -36,7 +36,7 @@ jobs:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run robotframework tests
-        uses: trunk-io/analytics-uploader@main
+        uses: trunk-io/analytics-uploader@gabe/update-version
         if: ${{ always() }}
         with:
           # Path to your test results.
