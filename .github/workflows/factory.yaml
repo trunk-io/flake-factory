@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: trunk install
-        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+        uses: trunk-io/trunk-action/install@v1
 
       - name: Merge active change
         env:
