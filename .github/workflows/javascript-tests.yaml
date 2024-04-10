@@ -50,6 +50,7 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jest-test
+          cli-version: 0.5.4
         env:
           TRUNK_API_ADDRESS: https://api.trunk-staging.io
 
