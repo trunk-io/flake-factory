@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted, linux]
+    runs-on: public-amd64-small
 
     steps:
       - uses: actions/checkout@v4
