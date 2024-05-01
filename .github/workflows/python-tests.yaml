@@ -33,7 +33,7 @@ jobs:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
         env:
-          TRUNK_API_ADDRESS: https://api.trunk-staging.io
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run robotframework tests
         uses: trunk-io/analytics-uploader@main
@@ -49,4 +49,4 @@ jobs:
             pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
             python/robotframework/**
         env:
-          TRUNK_API_ADDRESS: https://api.trunk-staging.io
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
