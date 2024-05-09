@@ -21,14 +21,14 @@ jobs:
       - run:
           name: Run tests with Jest
           command: ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
-      - store_test_results:
-          path: ./test-results/
       - run:
           name: Upload test results to Trunk
           command: |
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
             ./trunk-analytics-uploader upload --junit-paths "junit.xml" --org-url-slug "circleci-example" --token "${TRUNK_API_TOKEN}"
+      - store_test_results:
+          path: ./test-results/
   test-python:
     # Install dependencies and run tests
     docker:
