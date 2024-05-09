@@ -20,7 +20,7 @@ jobs:
           command: ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - store_test_results:
           path: ./test-results/
-      - upload:
+      - run:
           name: upload test results to Trunk
           # Upload results to trunk.io
           command: |
