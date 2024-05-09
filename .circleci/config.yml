@@ -38,6 +38,7 @@ jobs:
             node -v
       - run:
           name: Upload test results to Trunk
+          when: always
           command: |
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
