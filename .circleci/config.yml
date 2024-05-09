@@ -16,6 +16,9 @@ jobs:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
       - run:
+          name: Say Hello
+          command: echo "Hello"
+      - run:
           name: Run tests with Jest
           command: ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - store_test_results:
