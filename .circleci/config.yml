@@ -87,7 +87,9 @@ workflows:
       - test-node
       - test-python
       - test-rust
-      - upload-trunk
+      - upload-trunk:
+          requires:
+            - test-node
     # - deploy:
     #     requires:
     #       - test-node
