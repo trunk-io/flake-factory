@@ -22,6 +22,10 @@ jobs:
           name: Run tests with Jest
           command: ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - run:
+          name: printing the version of node
+          command: |
+            node -v
+      - run:
           name: Upload test results to Trunk
           command: |
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
