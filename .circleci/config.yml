@@ -8,8 +8,8 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
-    environment:
-      JEST_JUNIT_OUTPUT_DIR: ./test-results/
+#    environment:
+#      JEST_JUNIT_OUTPUT_DIR: ./test-results/
     steps:
       - checkout
       - node/install-packages:
@@ -21,6 +21,7 @@ jobs:
       - run:
           name: Run tests with Jest
           command: |
+            more javascript/tests/jest/jest.config.json
             ./node_modules/.bin/jest --config=javascript/tests/jest/jest.config.json javascript/tests/jest/**/*.js
 # --ci --runInBand --reporters=default --reporters=jest-junit javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json
 #            npm run jest-test
