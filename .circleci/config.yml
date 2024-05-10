@@ -30,19 +30,6 @@ jobs:
             echo We are done here
       - store_test_results:
           path: ./test-results/
-  upload-trunk:
-    executor: node/default
-    environment:
-      JEST_JUNIT_OUTPUT_DIR: ./test-results/
-    steps:
-      - checkout
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
-      - run:
-          name: printing the version of node
-          command: |
-            node -v
   test-python:
     # Install dependencies and run tests
     docker:
@@ -88,9 +75,6 @@ workflows:
       - test-node
       - test-python
       - test-rust
-      - upload-trunk:
-          requires:
-            - test-node
     # - deploy:
     #     requires:
     #       - test-node
