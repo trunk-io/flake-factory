@@ -26,8 +26,8 @@ jobs:
           environment:
             TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
           command: |
-            echo trunk public api address is used ${TRUNK_PUBLIC_API_ADDRESS}
-            echo secrets are ${TRUNK_ORG_SLUG} and ${TRUNK_API_TOKEN}
+            echo TRUNK_PUBLIC_API_ADDRESS is used ${TRUNK_PUBLIC_API_ADDRESS}
+            echo secrets are TRUNK_ORG_SLUG = ${TRUNK_ORG_SLUG} and TRUNK_API_TOKEN = ${TRUNK_API_TOKEN}
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
             ./trunk-analytics-uploader upload --junit-paths "tests/jest/jest_junit_test.xml" --org-url-slug ${TRUNK_ORG_SLUG} --token ${TRUNK_API_TOKEN}
