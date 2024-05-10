@@ -14,10 +14,8 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-#          cache-path: ~/project/node_modules
+          cache-path: ~/project/node_modules
           override-ci-command: npm install
-          with-cache: false
-          cache-version: v2
       - run:
           name: Run tests with Jest
           command: |
@@ -29,10 +27,13 @@ jobs:
             TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
           command: |
             echo TRUNK_PUBLIC_API_ADDRESS is used ${TRUNK_PUBLIC_API_ADDRESS}
-            echo secrets are TRUNK_ORG_SLUG = ${TRUNK_ORG_SLUG} and TRUNK_API_TOKEN = ${TRUNK_API_TOKEN}
-            curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
+            echo secrets are TRUNK_ORG_SLUG = ${TRUNK_ORG_SLUG} and TRUNK_API_TOKEN= ${TRUNK_API_TOKEN}
+            curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader            
             chmod +x ./trunk-analytics-uploader
+            echo trunk version is
             ./trunk-analytics-uploader -V
+            echo timestamp is
+            date -r ./trunk-analytics-uploader
             ./trunk-analytics-uploader upload --junit-paths "tests/jest/jest_junit_test.xml" --org-url-slug ${TRUNK_ORG_SLUG} --token ${TRUNK_API_TOKEN}
             echo We are done here
       - store_test_results:
