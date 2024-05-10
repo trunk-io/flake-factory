@@ -21,7 +21,8 @@ jobs:
       - run:
           name: Run tests with Jest
           command: |
-            ./node_modules/.bin/jest --ci --runInBand -- reporters=default --reporters=jest-junit javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json
+            ./node_modules/.bin/jest --config=javascript/tests/jest/jest.config.json javascript/tests/jest/**/*.js
+# --ci --runInBand --reporters=default --reporters=jest-junit javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json
 #            npm run jest-test
 #          ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - run:
