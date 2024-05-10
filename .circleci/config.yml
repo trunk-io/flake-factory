@@ -24,9 +24,9 @@ jobs:
           name: Upload test results to Trunk
           when: always
           environment:
-            TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+            TRUNK_API_ADDRESS: https://api.trunk-staging.io
           command: |
-            echo TRUNK_PUBLIC_API_ADDRESS is used ${TRUNK_PUBLIC_API_ADDRESS}
+            echo TRUNK_API_ADDRESS is used ${TRUNK_API_ADDRESS}
             echo secrets are TRUNK_ORG_SLUG = ${TRUNK_ORG_SLUG} and TRUNK_API_TOKEN= ${TRUNK_API_TOKEN}
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest?foo" -o ./trunk-analytics-uploader            
             chmod +x ./trunk-analytics-uploader
