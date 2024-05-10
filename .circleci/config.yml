@@ -27,7 +27,7 @@ jobs:
           command: |
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
-            ./trunk-analytics-uploader upload --junit-paths "junit.xml" --org-url-slug "circleci-example" --token "${TRUNK_API_TOKEN}"
+            ./trunk-analytics-uploader upload --junit-paths "junit.xml" --org-url-slug "${TRUNK_ORG_SLUG}" --token "${TRUNK_API_TOKEN}"
       - store_test_results:
           path: ./test-results/
   upload-trunk:
