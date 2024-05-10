@@ -15,22 +15,14 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-#      - run:
-#          name: Say Hello
-#          command: echo "Hello"
       - run:
           name: Run tests with Jest
           command: |
             ./node_modules/.bin/jest --config=javascript/tests/jest/jest.config.json javascript/tests/jest/**/*.js
-# --ci --runInBand --reporters=default --reporters=jest-junit javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json
-#            npm run jest-test
-#          ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - run:
           name: Upload test results to Trunk
           when: always
           command: |
-            echo HELLO THERE
-#            echo $TRUNK_ORG_SLUG $TRUNK_API_TOKEN
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
             ./trunk-analytics-uploader upload --junit-paths "tests/jest/jest_junit_test.xml" --org-url-slug $TRUNK_ORG_SLUG --token $TRUNK_API_TOKEN
