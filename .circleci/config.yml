@@ -30,6 +30,9 @@ jobs:
           when: always
           command: |
             echo HELLO THERE
+            ls 
+            ls tests
+            ls tests/jest
             more tests/jest/jest_junit_test.xml
             echo $TRUNK_ORG_SLUG $TRUNK_API_TOKEN
             curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
