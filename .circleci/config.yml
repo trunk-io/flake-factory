@@ -15,7 +15,7 @@ jobs:
       - checkout
       - node/install-packages:
 #          cache-path: ~/project/node_modules
-#          override-ci-command: npm install
+          override-ci-command: npm install
           with-cache: false
           cache-version: v2
       - run:
