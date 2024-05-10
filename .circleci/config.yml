@@ -20,7 +20,8 @@ jobs:
           command: echo "Hello"
       - run:
           name: Run tests with Jest
-          command: ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
+          command: npm run jest-test
+#          ./node_modules/.bin/jest --ci --runInBand --reporters=default --reporters=jest-junit
       - run:
           name: Upload test results to Trunk
           when: always
