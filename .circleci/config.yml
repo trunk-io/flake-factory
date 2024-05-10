@@ -25,8 +25,8 @@ jobs:
           name: Upload test results to Trunk
           when: always
           command: |
-            echo ${TRUNK_ORG_SLUG} ${TRUNK_API_TOKEN}
-            curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
+            echo HELLO THERE
+            echo $TRUNK_ORG_SLUG $TRUNK_API_TOKEN            curl -fsSL --retry 3 "https://trunk.io/releases/analytics-cli/latest" -o ./trunk-analytics-uploader
             chmod +x ./trunk-analytics-uploader
             ./trunk-analytics-uploader upload --junit-paths "junit.xml" --org-url-slug "${TRUNK_ORG_SLUG}" --token "${TRUNK_API_TOKEN}"
       - store_test_results:
