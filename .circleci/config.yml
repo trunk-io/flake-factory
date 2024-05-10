@@ -24,7 +24,7 @@ jobs:
           name: Upload test results to Trunk
           when: always
           environment:
-            TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io/
+            TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
           command: |
             echo trunk public api address is used ${TRUNK_PUBLIC_API_ADDRESS}
             echo secrets are ${TRUNK_ORG_SLUG} and ${TRUNK_API_TOKEN}
