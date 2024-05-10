@@ -8,7 +8,8 @@ jobs:
   test-node:
     # Install node dependencies and run tests
     executor: node/default
-#    environment:
+    environment:
+      TRUNK_PUBLIC_API_ADDRESS: api.trunk-staging.io
 #      JEST_JUNIT_OUTPUT_DIR: ./test-results/
     steps:
       - checkout
