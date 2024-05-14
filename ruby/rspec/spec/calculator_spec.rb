@@ -3,9 +3,9 @@ require "calculator"
 
 describe Calculator do
   describe ".add" do
-    context "given an empty string" do
-      it "returns zero" do
-        expect(Calculator.add("")).to eq(0)
+    context "given 1 and 2" do
+      it "returns 3" do
+        expect(Calculator.add(1, 2)).to eq(3)
       end
     end
   end

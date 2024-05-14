@@ -1,7 +1,7 @@
 # lib/calculator.rb
 class Calculator
-  def self.add(input)
-    0
+  def self.add(x, y)
+    x + y
   end
 
   def self.halve(input)
