@@ -33,6 +33,7 @@ jobs:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run minitest tests
+        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
