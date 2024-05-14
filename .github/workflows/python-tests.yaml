@@ -23,7 +23,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest tests
-        run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml
+        run:
+          pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml -o
+          junit_family=xunit1
 
       - name: Run robotframework tests
         if: ${{ always() }}
