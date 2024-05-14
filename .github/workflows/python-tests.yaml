@@ -1,8 +1,6 @@
 name: Python Tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
@@ -31,7 +29,9 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run: pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml -o junit_family=xunit1
+          run:
+            pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml -o
+            junit_family=xunit1
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
