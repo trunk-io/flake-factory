@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted, linux]
+    runs-on: public-amd64-small
 
     steps:
       - uses: actions/checkout@v4
@@ -27,10 +27,6 @@ jobs:
 
       - name: test
         id: test
-        run: behave --junit-directory=python/results --junit python/behave
-
-      - name: Flaky Test Reporter
-        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
@@ -39,9 +35,9 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: behave --junit-directory=python/results --junit python/behave
         env:
-          TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: true
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: trigger job re-run
         if:

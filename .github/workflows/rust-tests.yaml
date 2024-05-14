@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: [self-hosted, linux]
+    runs-on: public-amd64-small
 
     steps:
       - uses: actions/checkout@v4
@@ -23,10 +23,6 @@ jobs:
         run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
 
       - name: Run tests
-        run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
-
-      - name: Flaky Test Reporter
-        if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
@@ -35,6 +31,6 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
         env:
-          TRUNK_API_ADDRESS: https://api.trunk-staging.io
-        continue-on-error: true
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
