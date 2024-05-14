@@ -32,7 +32,7 @@ jobs:
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
-      - name: Run rspec tests
+      - name: Run minitest tests
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
