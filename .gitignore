@@ -69,4 +69,4 @@ retry.data
 TESTS-behave.xml
 
 .bundle
-ruby/minitest/results/*
+ruby/minitest/results/
