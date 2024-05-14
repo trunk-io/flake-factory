@@ -1,4 +1,4 @@
-# magic_ball.rb
+# mixer.rb
 require 'minitest/autorun'
 require 'minitest/reporters'
 Minitest::Reporters.use! Minitest::Reporters::JUnitReporter.new('ruby/minitest/results', write_files: true)
