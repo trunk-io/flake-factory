@@ -1,10 +1,11 @@
-# spec/square.rb
-require "calculator"
+# spec/calculator_spec.rb
+# require "calculator"
+require_relative "../lib/calculator"
 
 describe Calculator do
   describe ".add" do
     context "given 1 and 2" do
-      it "returns 3" do
+      it "returns " do
         expect(Calculator.add(1, 2)).to eq(3)
       end
     end
