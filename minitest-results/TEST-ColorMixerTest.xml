@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="ColorMixerTest" filepath="ruby/minitest/mixer.rb" skipped="0" failures="0" errors="0" tests="3" assertions="3" time="3.712065517902374e-05">
+    <testcase name="test_blue_and_yellow" lineno="17" classname="ColorMixerTest" assertions="1" time="2.8740614652633667e-05" file="ruby/minitest/mixer.rb">
+    </testcase>
+    <testcase name="test_red_and_blue" lineno="7" classname="ColorMixerTest" assertions="1" time="4.540197551250458e-06" file="ruby/minitest/mixer.rb">
+    </testcase>
+    <testcase name="test_red_and_yellow" lineno="12" classname="ColorMixerTest" assertions="1" time="3.839842975139618e-06" file="ruby/minitest/mixer.rb">
+    </testcase>
+  </testsuite>
+</testsuites>

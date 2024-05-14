@@ -1,7 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ansi (1.5.0)
+    builder (3.2.4)
     diff-lcs (1.5.1)
+    minitest (5.22.3)
+    minitest-ci (3.4.0)
+      minitest (>= 5.0.6)
+    minitest-reporters (1.6.1)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     rspec (3.13.0)
       rspec-core (~> 3.13.0)
       rspec-expectations (~> 3.13.0)
@@ -17,12 +27,16 @@ GEM
     rspec-support (3.13.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
+    ruby-progressbar (1.13.0)
 
 PLATFORMS
   ruby
   x86_64-linux
 
 DEPENDENCIES
+  minitest (~> 5.22)
+  minitest-ci (~> 3.4)
+  minitest-reporters (~> 1.6)
   rspec
   rspec_junit_formatter
 
