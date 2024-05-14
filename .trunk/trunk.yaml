@@ -29,6 +29,7 @@ lint:
     - linters: [ALL]
       paths:
         - "**/pnpm-lock.yaml"
+        - "**/.bundle"
 
 actions:
   enabled:
