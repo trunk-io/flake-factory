@@ -20,6 +20,7 @@ runtimes:
   enabled:
     - node@20.11.1
     - python@3.10.8
+    - ruby@>3.1.0
 
 lint:
   enabled:
