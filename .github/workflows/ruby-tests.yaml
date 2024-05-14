@@ -15,8 +15,6 @@ jobs:
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
-        env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
-          BUNDLE_GEMFILE: ${{ github.workspace }}/ruby/Gemfile
         with:
           ruby-version: 3.1.2
           bundler-cache: true
@@ -25,11 +23,11 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
-          junit-paths: "**/*_test.xml"
+          junit-paths: "**/rspec_test.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run: bundle exec rspec --format RspecJunitFormatter --out rspec_test.xml
+          run: bundle exec rspec ruby/rspec --format RspecJunitFormatter --out rspec_test.xml
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
