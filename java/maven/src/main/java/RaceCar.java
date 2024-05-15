@@ -18,4 +18,16 @@ public class RaceCar {
     return this.top_speed;
   }
   
+  public int getNumber() {
+    return this.number;
+  }
+
+  public void race(int distance) {
+    try {
+      int timeToSleep = distance / this.top_speed;
+      Thread.sleep(timeToSleep * 100);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+  }
 }
