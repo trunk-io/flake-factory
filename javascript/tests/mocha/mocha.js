@@ -24,7 +24,7 @@ describe("Odd - minute is divisible by 1", () => {
     it("should verify that X is equal to 3", () => {
       // Increment X
       X++;
-      assert.strictEqual(X, 24);
+      assert.strictEqual(X, 3);
     });
   });
 });
