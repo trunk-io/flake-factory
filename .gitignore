@@ -70,3 +70,5 @@ TESTS-behave.xml
 
 .bundle
 ruby/minitest/results/
+
+**/java/maven/target/
