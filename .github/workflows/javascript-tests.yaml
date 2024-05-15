@@ -30,7 +30,7 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
-          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
+          junit-paths: "**/mocha_test.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
