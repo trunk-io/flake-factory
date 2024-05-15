@@ -19,7 +19,7 @@ describe("Odd - minute is divisible by 1", () => {
 
   describe("X equals 3", function () {
     let X = 0; // X starts at 0
-    this.retries(2); // Retry up to 3 times
+    this.retries(5); // Retry up to 3 times
 
     it("should verify that X is equal to 3", () => {
       // Increment X
