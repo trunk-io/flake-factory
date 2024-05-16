@@ -13,7 +13,7 @@ public class RaceTrack {
 
     cars = new ArrayList<>();
     for (int i = 1; i <= numberOfCars; i++) {
-      int speed = 100 + random.nextInt(i * 100);
+      int speed = i * 10 + random.nextInt(i * 3);
       cars.add(new RaceCar(i, speed));
     }
   }
@@ -29,13 +29,12 @@ public int race(int distance) {
         return car.getNumber();
       });
     }
-    int winning_car = 0;
 
+    int winning_car = 0;
     try {
-      for (int i = 0; i < cars.size(); i++) {
-        Future<Integer> result = completionService.take();
-         winning_car = result.get();
-      }
+      Future<Integer> result = completionService.take();
+      winning_car = result.get();
+      System.out.println("wining car: " + result.get());
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
     } finally {

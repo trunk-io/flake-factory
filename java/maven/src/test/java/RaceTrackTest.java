@@ -43,4 +43,16 @@ public class RaceTrackTest {
         Assert.assertEquals(7, raceTrack.race(distance));
     }
 
+    @Test
+    public void testRaceEightCars() {
+        RaceTrack raceTrack = new RaceTrack(8);
+        Assert.assertEquals(8, raceTrack.race(distance));
+    }
+
+    @Test
+    public void testRaceNineCars() {
+        RaceTrack raceTrack = new RaceTrack(9);
+        Assert.assertEquals(9, raceTrack.race(distance));
+    }
+
 }

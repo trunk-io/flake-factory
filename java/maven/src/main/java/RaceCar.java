@@ -24,8 +24,11 @@ public class RaceCar {
 
   public void race(int distance) {
     try {
-      int timeToSleep = distance / this.top_speed;
-      Thread.sleep(timeToSleep * 100);
+      double timeToSleep = (double) distance / this.top_speed;
+       long sleepTimeMillis = Math.round(timeToSleep * 100.0);
+      Thread.sleep(sleepTimeMillis);
+      System.out.println("Car " + this.number + " slept for " + sleepTimeMillis + " milliseconds.");
+
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
