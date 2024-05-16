@@ -29,12 +29,22 @@ public int race(int distance) {
         return car.getNumber();
       });
     }
+<<<<<<< HEAD
 
     int winning_car = 0;
     try {
       Future<Integer> result = completionService.take();
       winning_car = result.get();
       System.out.println("wining car: " + result.get());
+=======
+    int winning_car = 0;
+
+    try {
+      for (int i = 0; i < cars.size(); i++) {
+        Future<Integer> result = completionService.take();
+         winning_car = result.get();
+      }
+>>>>>>> main
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
     } finally {
