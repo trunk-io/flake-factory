@@ -20,6 +20,17 @@ jobs:
           distribution: temurin
           cache: maven
 
+      - name: Run tests with Gradle
+        if: ${{ always() }}
+        uses: trunk-io/analytics-uploader@main
+        with:
+          junit-paths: "**/gradle/**/test-results/*.xml"
+          org-slug: trunk-staging-org
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: gradle test --project-dir java/gradle
+        env:
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
       - name: Run tests with Maven
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
