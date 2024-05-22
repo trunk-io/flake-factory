@@ -36,11 +36,25 @@ jobs:
         uses: trunk-io/analytics-uploader@main
         with:
           # Path to your test results.
-          junit-paths: "**/surefire-reports/*.xml"
+          junit-paths: "**/playwright/**/surefire-reports/*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: mvn test --file java/maven/pom.xml --quiet
+        env:
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+      - name: Run playwright tests with Maven
+        if: ${{ always() }}
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: "**/surefire-reports/*.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run: mvn test --file java/playwright/pom.xml --quiet
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
