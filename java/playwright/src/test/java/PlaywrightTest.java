@@ -62,4 +62,13 @@ public class PlaywrightTest {
     page.locator("input[name=\"search\"]").press("Enter");
     assertEquals("https://en.wikipedia.org/wiki/Playwright", page.url());
   }
+
+  @Test
+  void shouldFindGeorge() {
+    page.navigate("https://www.wikipedia.org/");
+    page.locator("input[name=\"search\"]").click();
+    page.locator("input[name=\"search\"]").fill("first president of the united states");
+    page.locator("input[name=\"search\"]").press("Enter");
+    assertEquals("https://en.wikipedia.org/wiki/John_Adams", page.url());
+  }  
 }
