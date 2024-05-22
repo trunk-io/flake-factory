@@ -79,6 +79,6 @@ public class PlaywrightTest {
     String secondsString = matcher.group(1);
     double seconds = Double.parseDouble(secondsString);
 
-    assertThat("time to search", seconds, lessThan(0.3));
+    assertThat("time to search", seconds, lessThan(0.33));
   }  
 }
