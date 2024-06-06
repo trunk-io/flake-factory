@@ -6,6 +6,7 @@
       {
         "outputDirectory": "tests/jest",
         "outputName": "jest_junit_test.xml"
+        "addFileAttribute" : true
       }
     ]
   ]
