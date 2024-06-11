@@ -72,3 +72,7 @@ TESTS-behave.xml
 ruby/minitest/results/
 
 **/java/maven/target/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
