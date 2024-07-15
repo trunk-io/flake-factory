@@ -76,3 +76,4 @@ ruby/minitest/results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+/apple/swift/.build/
