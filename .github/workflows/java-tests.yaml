@@ -26,7 +26,7 @@ jobs:
         with:
           junit-paths: "**/gradle/**/test-results/*.xml"
           org-slug: trunk-staging-org
-          cli-version: 0.5.12
+          cli-version: 0.5.13
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: gradle test --project-dir java/gradle
         env:
@@ -40,7 +40,7 @@ jobs:
           junit-paths: "**/surefire-reports/*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.5.12
+          cli-version: 0.5.13
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: mvn test --file java/maven/pom.xml --quiet
@@ -55,7 +55,7 @@ jobs:
           junit-paths: "**/playwright/**/surefire-reports/*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
-          cli-version: 0.5.12
+          cli-version: 0.5.13
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: mvn test --file java/playwright/pom.xml --quiet
