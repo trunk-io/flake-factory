@@ -33,6 +33,7 @@ jobs:
           junit-paths: "**/mocha_test.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
+          cli-version: 0.5.12
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run mocha-test
@@ -47,6 +48,7 @@ jobs:
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
+          cli-version: 0.5.12
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jest-test
@@ -61,6 +63,7 @@ jobs:
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
+          cli-version: 0.5.12
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run jasmine-test
@@ -74,9 +77,9 @@ jobs:
           junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
+          cli-version: 0.5.12
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: npm run playwright-test
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
-

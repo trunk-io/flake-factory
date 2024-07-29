@@ -33,6 +33,7 @@ jobs:
           junit-paths: "**/python/results/*-behave.xml"
           # Provide your Trunk organization slug.
           org-slug: trunk-staging-org
+          cli-version: 0.5.12
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: behave --junit-directory=python/results --junit python/behave
