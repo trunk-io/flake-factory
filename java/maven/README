@@ -1,6 +1,0 @@
-Install maven from ubuntu
-
-sudo apt install maven -y
-
-mvn compile
-mvn test
