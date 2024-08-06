@@ -32,7 +32,7 @@ jobs:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: |
             cd go/go-junit-report/
-            go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
+            go test -v 2>&1 ./... | go-junit-report -set-exit-code > report_test.xml
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
