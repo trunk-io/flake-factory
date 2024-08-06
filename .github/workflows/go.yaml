@@ -1,0 +1,33 @@
+name: PHP Tests
+
+on:
+  schedule:
+    - cron: 0 */6 * * *
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: public-amd64-small
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go Action
+        uses: actions/setup-go@v5
+      - name: Install dependencies
+        run: |
+          go install github.com/jstemmer/go-junit-report/v2@latest
+      - name: Run go tests
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: "**/*_test.xml"
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          run:
+            go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
+        env:
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
