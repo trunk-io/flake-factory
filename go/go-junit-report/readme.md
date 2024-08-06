@@ -7,7 +7,9 @@ https://github.com/jstemmer/go-junit-report
 
 go-junit-report will convert the standard testing output into junit xml 
 
+go do the src dir 
 ```shell
+cd ../src
 go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
 ```
 
