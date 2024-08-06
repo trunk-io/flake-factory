@@ -27,6 +27,7 @@ jobs:
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run:
+            cd go/go-junit-report/
             go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
