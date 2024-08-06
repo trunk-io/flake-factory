@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           go install github.com/jstemmer/go-junit-report/v2@latest
-          go env
+          echo 'go version is'
           go-junit-report --version
       - name: Run go tests
         uses: trunk-io/analytics-uploader@main
@@ -30,7 +30,7 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run:
+          run: |
             cd go/go-junit-report/
             go test -v 2>&1 ./... | go-junit-report -set-exit-code > report.xml
         env:
