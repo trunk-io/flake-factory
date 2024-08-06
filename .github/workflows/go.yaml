@@ -1,4 +1,4 @@
-name: PHP Tests
+name: GoLang Tests
 
 on:
   schedule:
