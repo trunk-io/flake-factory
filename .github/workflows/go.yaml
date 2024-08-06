@@ -30,7 +30,7 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run: go test -C go/src | go-junit-report -out tests/go-junit-report_test.xml
+          run: sh go/go-junit-report/runtests.sh
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
@@ -43,8 +43,7 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          working-directory: go/src
-          run: gotestsum --junitfile gotestsum_test.xml
+          run: sh go/gotestsum/runtests.sh
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
