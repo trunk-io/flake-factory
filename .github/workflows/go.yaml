@@ -19,6 +19,8 @@ jobs:
       - name: Install dependencies
         run: |
           go install github.com/jstemmer/go-junit-report/v2@latest
+          go env
+          go-junit-report --version
       - name: Run go tests
         uses: trunk-io/analytics-uploader@main
         with:
