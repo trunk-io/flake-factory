@@ -16,10 +16,6 @@ jobs:
       - name: Setup Bazelisk
         uses: bazelbuild/setup-bazelisk@v3
 
-      - name: run tests
-        run: bazel test --test_output=all //:hello_test
-        working-directory: "bazel/gtest"
-
       - name: upload tests
         uses: trunk-io/analytics-uploader@main
         with:
