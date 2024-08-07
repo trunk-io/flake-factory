@@ -20,6 +20,10 @@ jobs:
         with:
           path: "~/.cache/bazel"
           key: bazel
-      - run: bazel test
+      - run: |
+          cd bazel/gtest
+          echo "here"
+          pwd
+          bazel test
 
 
