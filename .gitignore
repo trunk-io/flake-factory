@@ -77,3 +77,7 @@ ruby/minitest/results/
 /blob-report/
 /playwright/.cache/
 /apple/swift/.build/
+
+
+# bazel
+bazel-*

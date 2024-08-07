@@ -43,4 +43,5 @@ tools:
     - node
     - python
   enabled:
+    - bazel@7.2.1
     - pnpm@8.15.5
