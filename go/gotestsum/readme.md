@@ -1,16 +1,19 @@
 # gotestsum
 
-gotestsum is a test runner for Go .
+[gotestsum](https://github.com/gotestyourself/gotestsum) is a test runner for Go .
 
-https://github.com/gotestyourself/gotestsum
-
-Install into your go project with
+Install the command line tool into your Golang project with
 
 ```shell
 go install gotest.tools/gotestsum@latest
 ```
 
-then run gotestsume with
+Go to the root of your Golang project
+
+```shell
+cd flaky-factory/go/src
+```
+then run `gotestsume` with the `--junitfile` option to produce XML
 
 ```shell
  gotestsum --junitfile gotestsum_test.xml
