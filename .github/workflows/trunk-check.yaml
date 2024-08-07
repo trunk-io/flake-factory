@@ -32,7 +32,7 @@ jobs:
       - name: trunk tools install
         shell: bash
         # NOTE: Install all tools needed for CI workflows here
-        run: trunk tools install --ci
+        run: ${TRUNK_PATH} tools install --ci
         env:
           TRUNK_LAUNCHER_QUIET: 1
 
