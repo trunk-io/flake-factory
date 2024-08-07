@@ -13,18 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Bazel
-      - uses: bazel-contrib/setup-bazel@0.8.5
+      - uses: actions/checkout@v4
+      - uses: bazelbuild/setup-bazelisk@v3
+      - name: Mount bazel cache  # Optional
+        uses: actions/cache@v4
         with:
-          # Avoid downloading Bazel every time.
-          bazelisk-cache: true
-          # Store build cache per workflow.
-          disk-cache: ${{ github.workflow }}
-          # Share repository cache between workflows.
-          repository-cache: true
-      - name: run tests
-        run: |
-          cd bazel/gtest
-          bazel test //:hello_test
+          path: "~/.cache/bazel"
+          key: bazel
+      - run: bazel test
 
 
