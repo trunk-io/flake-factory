@@ -1,0 +1,26 @@
+name: Pull Request
+run-name: Pull Request for ${{ github.ref_name }} by ${{ github.actor }}
+
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+# Allows the automerge bot PR job to comment on dependabot PRs
+permissions: read-all
+
+jobs:
+  trunk_check_runner:
+    name: Trunk Check runner [linux]
+    runs-on: public-amd64-small
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@main
