@@ -30,6 +30,5 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run: ls bazel/gtest/bazel-testlogs/hello_test
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
