@@ -22,5 +22,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Trunk install
+        uses: trunk-io/trunk-action/setup@v1
+
+      - name: Add install tools to path
+        shell: bash
+        run: echo "${PWD}/.trunk/tools" >> $GITHUB_PATH
+
+      - name: trunk tools install
+        shell: bash
+        # NOTE: Install all tools needed for CI workflows here
+        run: trunk tools install --ci
+        env:
+          TRUNK_LAUNCHER_QUIET: 1
+
       - name: Trunk Check
         uses: trunk-io/trunk-action@main
