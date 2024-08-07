@@ -1,0 +1,34 @@
+name: Bazel Tests
+
+permissions: read-all
+
+on:
+  schedule:
+    - cron: 0 */6 * * *
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: public-amd64-small
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bazelisk
+        uses: bazelbuild/setup-bazelisk@v3
+
+      - name: run tests
+        run: bazel test //...
+
+      - name: upload tests
+        uses: trunk-io/analytics-uploader@main
+        with:
+          # Path to your test results.
+          junit-paths: bazel-testlogs/**/test.xml
+          # Provide your Trunk organization slug.
+          org-slug: trunk-staging-org
+          # Provide your Trunk API token as a GitHub secret.
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+        env:
+          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io

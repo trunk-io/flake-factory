@@ -1,0 +1,40 @@
+name: Pull Request
+run-name: Pull Request for ${{ github.ref_name }} by ${{ github.actor }}
+
+on:
+  pull_request: {}
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+# Allows the automerge bot PR job to comment on dependabot PRs
+permissions: read-all
+
+jobs:
+  trunk_check_runner:
+    name: Trunk Check runner [linux]
+    runs-on: public-amd64-large
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Trunk install
+        uses: trunk-io/trunk-action/setup@v1
+
+      - name: Add install tools to path
+        shell: bash
+        run: echo "${PWD}/.trunk/tools" >> $GITHUB_PATH
+
+      - name: trunk tools install
+        shell: bash
+        # NOTE: Install all tools needed for CI workflows here
+        run: ${TRUNK_PATH} tools install --ci bazel
+        env:
+          TRUNK_LAUNCHER_QUIET: 1
+
+      - name: Trunk Check
+        uses: trunk-io/trunk-action@main
