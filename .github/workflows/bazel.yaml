@@ -16,6 +16,10 @@ jobs:
       - name: Setup Bazelisk
         uses: bazelbuild/setup-bazelisk@v3
 
+      - name: run tests
+        run: bazel test --test_output=all //:hello_test
+        working-directory: "bazel/gtest"
+
       - name: upload tests
         uses: trunk-io/analytics-uploader@main
         with:
@@ -25,7 +29,7 @@ jobs:
           org-slug: trunk-staging-org
           # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-          run: bazel test --test_output=all //:hello_test
+          run: ls bazel/gtest/bazel-testlogs/hello_test
           working-directory: "bazel/gtest"
         env:
           TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
