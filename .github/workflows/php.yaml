@@ -20,10 +20,10 @@ jobs:
           tools: php-cs-fixer, phpunit
           ini-values: error_reporting=-1, display_errors=On
 
-      - name: check PHPUnit
-        run: |
-          php --version
-          phpunit --version
+#      - name: check PHPUnit
+#        run: |
+#          php --version
+#          phpunit --version
 
       - name: Run phpunit tests
         uses: trunk-io/analytics-uploader@main
