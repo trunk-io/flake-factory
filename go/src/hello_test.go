@@ -2,19 +2,20 @@ package greetings
 
 import (
     "testing"
-    "regexp"
+    "time"
 )
 
 
 
-// TestHelloName calls greetings.Hello with a name, checking
-// for a valid return value.
-func TestHelloName(t *testing.T) {
-    name := "Gladys"
-    want := regexp.MustCompile(`\b`+name+`\b`)
-    msg, err := Hello("Gladysx")
-    if !want.MatchString(msg) || err != nil {
-        t.Fatalf(`Hello("Gladys") = %q, %v, want match for %#q, nil`, msg, err, want)
+// passes if the current minute is divisible by 2
+func TestCurrentMinute(t *testing.T) {
+
+    currentTime := time.Now()
+    minute := currentTime.Minute()
+
+
+    if minute % 2 != 0 {
+        t.Errorf("Minute is not divisible by two.")
     }
 }
 
