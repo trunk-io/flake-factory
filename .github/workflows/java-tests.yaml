@@ -24,7 +24,7 @@ jobs:
         if: ${{ always() }}
         uses: trunk-io/analytics-uploader@main
         with:
-          junit-paths: "**/gradle/**/test-results/*.xml"
+          junit-paths: "**/gradle/**/test-results/**/*.xml"
           org-slug: trunk-staging-org
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           run: gradle test --project-dir java/gradle
