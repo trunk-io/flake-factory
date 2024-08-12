@@ -15,7 +15,7 @@ func TestCurrentMinute(t *testing.T) {
 
 
     if minute % 2 != 0 {
-        t.Errorf("Minute is not divisible by two.",minute,0)
+        t.Errorf("Minute is not divisible by two.")
     }
 }
 
