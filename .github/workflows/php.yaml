@@ -13,17 +13,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install lib sodium
+        run: |
+          sudo apt update
+          sudo apt install -y libsodium-dev libsodium23
+
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
         with:
           php-version: '8.3.10'
           tools: php-cs-fixer, phpunit
           ini-values: error_reporting=-1, display_errors=On
-
-#      - name: check PHPUnit
-#        run: |
-#          php --version
-#          phpunit --version
 
       - name: Run phpunit tests
         uses: trunk-io/analytics-uploader@main
