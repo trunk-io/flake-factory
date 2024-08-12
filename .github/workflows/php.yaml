@@ -21,8 +21,8 @@ jobs:
           extensions: :sodium
           ini-values: error_reporting=-1, display_errors=On
 
-      - name check PHPUnit
-        run:|
+      - name: check PHPUnit
+        run: |
           php --version
           phpunit --version
 
