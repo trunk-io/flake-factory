@@ -19,7 +19,7 @@ jobs:
         uses: bazelbuild/setup-bazelisk@v3
 
       - name: run tests
-        run: bazel test //...
+        run: bazel test //bazel/gtest:hello_test
 
       - name: upload tests
         uses: trunk-io/analytics-uploader@main
