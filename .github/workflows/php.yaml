@@ -18,6 +18,7 @@ jobs:
         with:
           php-version: '8.3'
           tools: php-cs-fixer, phpunit
+          extensions: libsodium
 
       - name: Run phpunit tests
         uses: trunk-io/analytics-uploader@main
