@@ -60,8 +60,7 @@ path\ with\ spaces/ @space-owner
 ee/docs    @docs
 docs       @docs
 
-# Use of default owners for a section. In this case, all files (*) are owned by
-the dev team except the README.md and data-models which are owned by other teams.
+# Use of default owners for a section. In this case, all files (*) are owned by the dev team except the README.md and data-models which are owned by other teams.
 [Development] @dev-team
 *
 README.md @docs-team
