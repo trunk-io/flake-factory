@@ -5,6 +5,15 @@ on:
     - cron: 0 */6 * * *
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      # trunk-ignore(checkov/CKV_GHA_7)
+      cli-version:
+        type: string
+        required: false
+        description:
+          The version of `analytics-cli` to use. Defaults to the latest specified in
+          `analytis-uploader`.
 
 jobs:
   test:
@@ -21,21 +30,16 @@ jobs:
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
         with:
-          php-version: '8.3.10'
+          php-version: "8.3.10"
           tools: php-cs-fixer, phpunit
           ini-values: error_reporting=-1, display_errors=On
 
       - name: Run phpunit tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/*_test.xml"
           run:
-            phpunit -c php/phpunit/phpunit.xml --bootstrap php/phpunit/src/autoload.php --log-junit tests/phpunit_test.xml
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
-
+            phpunit -c php/phpunit/phpunit.xml --bootstrap php/phpunit/src/autoload.php --log-junit
+            tests/phpunit_test.xml

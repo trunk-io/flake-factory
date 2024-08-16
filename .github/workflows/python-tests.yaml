@@ -5,6 +5,15 @@ on:
     - cron: 0 */6 * * *
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      # trunk-ignore(checkov/CKV_GHA_7)
+      cli-version:
+        type: string
+        required: false
+        description:
+          The version of `analytics-cli` to use. Defaults to the latest specified in
+          `analytis-uploader`.
 
 jobs:
   test:
@@ -23,32 +32,22 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/*_test.xml"
           run:
             pytest python/pytest/** --junitxml=python/results/pytest/pytest_test.xml -o
             junit_family=xunit1
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run robotframework tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         if: ${{ always() }}
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/*_test.xml"
           run:
             pabot --testlevelsplit --outputdir=python/results/robotframework --output=robot_test.xml
             python/robotframework/**
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io

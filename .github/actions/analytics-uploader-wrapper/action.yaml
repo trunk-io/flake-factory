@@ -1,0 +1,42 @@
+name: Trunk Analytics Uploader Wrapper
+description: Wrapper that supplies defaults to the `analytics-uploader` action
+
+inputs:
+  token:
+    description: Organization token. Defaults to TRUNK_API_TOKEN env var.
+    required: false
+  junit-paths:
+    description: Comma-separated list of glob paths to junit files.
+    required: true
+  run:
+    description: The command to run before uploading test results.
+    required: false
+  cli-version:
+    description: The version of the uploader to use.
+    required: false
+
+runs:
+  using: composite
+  steps:
+    - name: Upload test results with CLI version ${{ inputs.cli-version }}
+      if: "${{ inputs.cli-version != '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-staging-org
+        token: ${{ inputs.token }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+    - name: Upload test results with default CLI version
+      if: "${{ inputs.cli-version == '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-staging-org
+        token: ${{ inputs.token }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io

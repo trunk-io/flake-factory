@@ -1,0 +1,38 @@
+# trunk-ignore-all(checkov/CKV2_GHA_1)
+name: Test Analytics CLI Version
+
+on:
+  workflow_dispatch:
+    inputs:
+      # trunk-ignore(checkov/CKV_GHA_7)
+      cli-version:
+        type: string
+        required: false
+        description:
+          The version of `analytics-cli` to use. Defaults to the latest specified in
+          `analytis-uploader`.
+      ref:
+        type: string
+        required: false
+        default: main
+        description: The branch or tag name which contains the version of the workflow files to run.
+
+jobs:
+  rerun:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run all test workflows with CLI version ${{ inputs.cli-version || 'latest' }}
+        env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          GH_DEBUG: api
+        run: |
+          gh workflow run bazel.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run go.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run java-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run javascript-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run php.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run python-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run retry-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run ruby-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
+          gh workflow run rust-tests.yaml --ref ${{ inputs.ref }} -f cli-version=${{ inputs.cli-version }}
