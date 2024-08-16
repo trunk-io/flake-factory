@@ -22,6 +22,7 @@ jobs:
         run: bazel test //bazel/gtest:hello_test
 
       - name: upload tests
+        if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}

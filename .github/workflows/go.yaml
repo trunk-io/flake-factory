@@ -26,16 +26,19 @@ jobs:
         working-directory: go/src
 
       - name: Upload test results
+        if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           junit-paths: "**/*_test.xml"
 
       - name: Run tests with gotestsum
+        if: ${{ always() }}
         run: gotestsum --junitfile gotestsum_test.xml
         working-directory: go/src
 
       - name: Upload test results
+        if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
