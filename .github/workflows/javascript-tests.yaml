@@ -27,56 +27,32 @@ jobs:
           pnpm install
 
       - name: Run Mocha Tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/mocha_test.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/mocha_test.xml"
           run: npm run mocha-test
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run Jest Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           run: npm run jest-test
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run Jasmine Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           run: npm run jasmine-test
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
       - name: Run Playwright Tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/*_test.xml,**/junitresults-*.xml"
           run: npm run playwright-test
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
-

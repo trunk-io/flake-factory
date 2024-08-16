@@ -20,28 +20,16 @@ jobs:
           bundler-cache: true
 
       - name: Run rspec tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/rspec_test.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/rspec_test.xml"
           run: bundle exec rspec ruby/rspec --format RspecJunitFormatter --out rspec_test.xml
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
       - name: Run minitest tests
         if: ${{ always() }}
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: "**/ruby/minitest/results/*.xml"
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          junit-paths: "**/ruby/minitest/results/*.xml"
           run: bundle exec ruby ruby/minitest/mixer.rb
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io

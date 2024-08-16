@@ -22,13 +22,7 @@ jobs:
         run: bazel test //bazel/gtest:hello_test
 
       - name: upload tests
-        uses: trunk-io/analytics-uploader@main
+        uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          # Path to your test results.
-          junit-paths: bazel-testlogs/**/test.xml
-          # Provide your Trunk organization slug.
-          org-slug: trunk-staging-org
-          # Provide your Trunk API token as a GitHub secret.
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
-        env:
-          TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+          junit-paths: bazel-testlogs/**/test.xml
