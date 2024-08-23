@@ -8,7 +8,8 @@
     "jasmine-test": "jasmine 'javascript/tests/jasmine/**/*.js'",
     "jest-test": "jest javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json",
     "playwright-test": "npx playwright test",
-    "mocha-test": "mocha 'javascript/tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=javascript/tests/mocha/mocha_test.xml"
+    "mocha-test": "mocha 'javascript/tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=javascript/tests/mocha/mocha_test.xml",
+    "test": "npm run jest-test"
   },
   "dependencies": {
     "jasmine": "^5.1.0",
