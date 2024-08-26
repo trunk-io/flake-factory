@@ -40,7 +40,7 @@ jobs:
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
-          junit-paths: "**/*_test.xml"
+          junit-paths: "**/go-junit-report_test.xml"
 
       - name: Run tests with gotestsum
         if: ${{ always() }}
@@ -53,4 +53,4 @@ jobs:
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
-          junit-paths: "**/*_test.xml"
+          junit-paths: "**/gotestsum_test.xml"
