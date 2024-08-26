@@ -44,7 +44,7 @@ jobs:
 
       - name: Run tests with gotestsum
         if: ${{ always() }}
-        run: gotestsum --junitfile gotestsum_test.xml
+        run: gotestsum --rerun-fails --junitfile gotestsum_test.xml
         working-directory: go/src
 
       - name: Upload test results
