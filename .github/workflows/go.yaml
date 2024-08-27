@@ -31,6 +31,7 @@ jobs:
           go install gotest.tools/gotestsum@latest
 
       - name: Run tests with go-junit-report
+        shell: bash
         run: GORUNNER=NONE go test -v 2>&1 | go-junit-report -out go-junit-report_test.xml
         working-directory: go/src
 
@@ -51,6 +52,7 @@ jobs:
 
       - name: Run tests with gotestsum
         if: ${{ always() }}
+        shell: bash
         # we pass in env GORUNNER so that a unique retry file will be created
         run: GORUNNER=GOTESTSUM gotestsum --rerun-fails=3 --junitfile gotestsum_test.xml
         working-directory: go/src
