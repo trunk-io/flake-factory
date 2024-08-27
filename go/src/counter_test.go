@@ -1,4 +1,4 @@
-package greetings
+package golang_examples
 
 import (
 	"encoding/json"
