@@ -13,8 +13,10 @@ Go to the root of your Golang project
 ```shell
 cd flaky-factory/go/src
 ```
-then run `gotestsume` with the `--junitfile` option to produce XML
+
+then run `gotestsum` with the `--junitfile` option to produce XML and --rerun-fails=3 to force rerun
+of any failing tests.
 
 ```shell
- gotestsum --junitfile gotestsum_test.xml
+ gotestsum  --rerun-fails=3 --junitfile gotestsum_test.xml
 ```
