@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="2" failures="0" errors="0" time="0.150925">
+	<testsuite tests="2" failures="0" time="0.000000" name="example/hello" timestamp="2024-08-27T00:46:15Z">
+		<properties>
+			<property name="go.version" value="go1.23.0 linux/amd64"></property>
+		</properties>
+		<testcase classname="example/hello" name="TestPassEveryThirdExecution" time="0.100000"></testcase>
+		<testcase classname="example/hello" name="TestCurrentMinute" time="0.000000"></testcase>
+	</testsuite>
+</testsuites>

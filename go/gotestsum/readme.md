@@ -14,9 +14,9 @@ Go to the root of your Golang project
 cd flaky-factory/go/src
 ```
 
-then run `gotestsum` with the `--junitfile` option to produce XML and --rerun-fails to force rerun
+then run `gotestsum` with the `--junitfile` option to produce XML and --rerun-fails=3 to force rerun
 of any failing tests.
 
 ```shell
- gotestsum  --rerun-fails --junitfile gotestsum_test.xml
+ gotestsum  --rerun-fails=3 --junitfile gotestsum_test.xml
 ```

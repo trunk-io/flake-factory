@@ -53,5 +53,8 @@ func TestPassEveryThirdExecution(t *testing.T) {
 	// Pass the test every 3rd execution
 	if counter%3 != 0 {
 		t.Fatalf("Pass every 3rd execution")
+	} else {
+		// On pass we delete the file
+		os.Remove(counterFile)
 	}
 }
