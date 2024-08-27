@@ -43,7 +43,7 @@ func TestPassEveryThirdExecution(t *testing.T) {
 	// Read the GORUNNER environment variable
 	goRunner := os.Getenv("GORUNNER")
 	if goRunner == "" {
-		goRunner = "not_gorunner_set"
+		goRunner = "NONE"
 	}
 
 	// Read the current counter value
