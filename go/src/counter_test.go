@@ -1,4 +1,4 @@
-package greetings
+package golang_examples
 
 import (
 	"encoding/json"
@@ -66,12 +66,12 @@ func TestPassEveryThirdExecution(t *testing.T) {
 		t.Fatalf("Failed to write counter: %v", err)
 	}
 
-	// Sleep for 10 milliseconds
-	time.Sleep(100 * time.Millisecond)
+	// Sleep for 200 milliseconds
+	time.Sleep(200 * time.Millisecond)
 
 	// Pass the test every 3rd execution
 	if counterData.Count%3 != 0 {
-		t.Fatalf("Pass every 3rd execution")
+		t.Fatalf("current count is %d for runner %s; test should pass on 3rd run", counterData.Count, counterData.Runner)
 	} else {
 		// On pass we delete the file
 		os.Remove(counterFile)
