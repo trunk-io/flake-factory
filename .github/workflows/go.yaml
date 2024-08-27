@@ -44,6 +44,13 @@ jobs:
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/go-junit-report_test.xml"
 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gotest-results
+          path: "**/go-junit-report_test.xml"
+          retention-days: 5
+
       - name: Run tests with gotestsum
         if: ${{ always() }}
         env:
@@ -59,3 +66,10 @@ jobs:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/gotestsum_test.xml"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gotestsum-results
+          path: "**/gotestsum_test.xml"
+          retention-days: 5
