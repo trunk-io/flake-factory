@@ -1,0 +1,45 @@
+name: PHP Tests
+
+on:
+  schedule:
+    - cron: 0 */6 * * *
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      # trunk-ignore(checkov/CKV_GHA_7)
+      cli-version:
+        type: string
+        required: false
+        description:
+          The version of `analytics-cli` to use. Defaults to the latest specified in
+          `analytis-uploader`.
+
+jobs:
+  test:
+    runs-on: public-amd64-small
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install lib sodium
+        run: |
+          sudo apt update
+          sudo apt install -y libsodium-dev libsodium23
+
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@2.31.1
+        with:
+          php-version: "8.3.10"
+          tools: php-cs-fixer, phpunit
+          ini-values: error_reporting=-1, display_errors=On
+
+      - name: Run phpunit tests
+        uses: ./.github/actions/analytics-uploader-wrapper
+        with:
+          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/*_test.xml"
+          run:
+            phpunit -c php/phpunit/phpunit.xml --bootstrap php/phpunit/src/autoload.php --log-junit
+            tests/phpunit_test.xml
