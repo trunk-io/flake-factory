@@ -46,7 +46,6 @@ jobs:
           if_no_artifact_found: error
 
       - name: test
-        # if: ${{ always() }}
         id: test
         shell: bash
         run: behave --junit-directory=python/results --junit python/behave
@@ -60,7 +59,7 @@ jobs:
           junit-paths: "**/python/results/*-behave.xml"
 
       - name: Upload artifacts
-        if: ${{ always() }}
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: retry-data
