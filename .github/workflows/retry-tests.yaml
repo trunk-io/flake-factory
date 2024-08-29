@@ -36,18 +36,17 @@ jobs:
           tools: gh
 
       - name: Download artifact2
+        if: ${{ fromJSON(github.run_attempt) > 1}}
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
         with:
           pr: ${{github.event.pull_request.number}}
-          # run_id: ${{ github.run_id }}
-          # Optional, defaults to current repo
           name: retry-data
           workflow_conclusion: ""
-          if_no_artifact_found: warn
+          if_no_artifact_found: error
 
       - name: test
-        if: ${{ always() }}
+        # if: ${{ always() }}
         id: test
         shell: bash
         run: behave --junit-directory=python/results --junit python/behave
