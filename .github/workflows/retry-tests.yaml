@@ -32,7 +32,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: trunk install
-        uses: trunk-io/trunk-action/install@540e7fe
+        uses: trunk-io/trunk-action/install@latest
         with:
           tools: gh
 
