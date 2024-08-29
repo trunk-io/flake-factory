@@ -25,23 +25,47 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: 3.x
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: trunk install
-        uses: trunk-io/trunk-action/install@54ccfcf9add644a36a5aa1d0046c92f654ff9e45
+        uses: trunk-io/trunk-action/install@540e7fe
+        with:
+          tools: gh
+
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          pr: ${{github.event.pull_request.number}}
+          run_id: ${{ github.run_id }}
+          # Optional, defaults to current repo
+          repo: ${{ github.repository }}
+          if_no_artifact_found: warn
 
       - name: test
         id: test
+        shell: bash
+        run: behave --junit-directory=python/results --junit python/behave
+
+      - name: Upload Test Results
+        if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/python/results/*-behave.xml"
-          run: behave --junit-directory=python/results --junit python/behave
+
+      - name: Upload artifacts
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: retry-data
+          path: "**/python/behave/retry.data"
+          retention-days: 5
 
       - name: trigger job re-run
         if:

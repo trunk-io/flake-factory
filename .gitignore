@@ -82,3 +82,6 @@ ruby/minitest/results/
 # bazel
 bazel-*
 go/src/counter_test.txt
+
+.venv
+python/behave/retry.data
