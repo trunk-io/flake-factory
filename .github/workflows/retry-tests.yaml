@@ -44,6 +44,18 @@ jobs:
           # run_id: ${{ github.run_id }}
           # Optional, defaults to current repo
           name: retry-data
+          workflow_conclusion: completed
+          if_no_artifact_found: warn
+
+      - name: Download artifact
+        id: download-artifact24
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          pr: ${{github.event.pull_request.number}}
+          # run_id: ${{ github.run_id }}
+          # Optional, defaults to current repo
+          name: retry-data
+          workflow_conclusion: ""
           if_no_artifact_found: warn
 
       - name: Download artifact
