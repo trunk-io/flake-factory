@@ -40,13 +40,14 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
         with:
-          pr: ${{github.event.pull_request.number}}
+          # pr: ${{github.event.pull_request.number}}
           run_id: ${{ github.run_id }}
           # Optional, defaults to current repo
           repo: ${{ github.repository }}
           if_no_artifact_found: warn
 
       - name: test
+        if: ${{ always() }}
         id: test
         shell: bash
         run: behave --junit-directory=python/results --junit python/behave
