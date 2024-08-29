@@ -7,8 +7,25 @@ on:
         required: true
 jobs:
   rerun:
-    runs-on: ubuntu-latest
+    runs-on: public-amd64-small
+
     steps:
+      - uses: actions/checkout@v4
+
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: trunk install
+        uses: trunk-io/trunk-action/install@v1.1.16
+        with:
+          tools: gh
+
       - name: rerun ${{ inputs.run_id }}
         env:
           GH_REPO: ${{ github.repository }}
