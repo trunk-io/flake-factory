@@ -1,11 +1,11 @@
 import os
-import tempfile
 import time
 
 from behave import *
 
-temp_dir = tempfile.gettempdir()
-test_file = os.path.join(temp_dir, "retry.data")
+# the retry.data file is stored as a GH artifact by the run so we can reliably have it in place between exec cycles
+current_dir = os.getcwd()
+test_file = os.path.join(current_dir, "python", "behave", "retry.data")
 
 
 @given("start the behave test")

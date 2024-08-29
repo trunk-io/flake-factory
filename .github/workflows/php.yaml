@@ -30,7 +30,7 @@ jobs:
       - name: Setup PHP Action
         uses: shivammathur/setup-php@2.31.1
         with:
-          php-version: "8.3.10"
+          php-version: 8.3.10
           tools: php-cs-fixer, phpunit
           ini-values: error_reporting=-1, display_errors=On
 
