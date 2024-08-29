@@ -46,6 +46,17 @@ jobs:
           name: retry-data
           if_no_artifact_found: warn
 
+      - name: Download artifact
+        id: download-artifact2
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          # pr: ${{github.event.pull_request.number}}
+          # run_id: ${{ github.run_id }}
+          # Optional, defaults to current repo
+          name: retry-data
+          run_id: ${{ github.event.workflow_run.id }}
+          if_no_artifact_found: warn
+
       - name: test
         if: ${{ always() }}
         id: test
