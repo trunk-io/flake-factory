@@ -22,11 +22,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: set up python
         uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - name: Install dependencies
+
+      - name: install dependencies
         run: |
           pip install -r requirements.txt
 
@@ -35,7 +36,7 @@ jobs:
         with:
           tools: gh
 
-      - name: Download artifact2
+      - name: download artifact (when retrying)
         if: ${{ fromJSON(github.run_attempt) > 1}}
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
@@ -50,7 +51,7 @@ jobs:
         shell: bash
         run: behave --junit-directory=python/results --junit python/behave
 
-      - name: Upload Test Results
+      - name: upload test results
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
@@ -58,7 +59,7 @@ jobs:
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/python/results/*-behave.xml"
 
-      - name: Upload artifacts
+      - name: upload artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
