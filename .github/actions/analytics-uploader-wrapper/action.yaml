@@ -20,23 +20,25 @@ runs:
   steps:
     - name: Upload test results with CLI version ${{ inputs.cli-version }}
       if: "${{ inputs.cli-version != '' }}"
-      uses: trunk-io/analytics-uploader@main
+      uses: trunk-io/analytics-uploader@yost/trunk-12395/surface-use-quarantining-flag-in-the-gh-action
       with:
         org-slug: trunk-staging-org
         token: ${{ inputs.token }}
         cli-version: ${{ inputs.cli-version }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
+        quarantine: "true"
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
     - name: Upload test results with default CLI version
       if: "${{ inputs.cli-version == '' }}"
-      uses: trunk-io/analytics-uploader@main
+      uses: trunk-io/analytics-uploader@yost/trunk-12395/surface-use-quarantining-flag-in-the-gh-action
       with:
         org-slug: trunk-staging-org
         token: ${{ inputs.token }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
+        quarantine: "true"
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
