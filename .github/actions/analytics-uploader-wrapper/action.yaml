@@ -35,7 +35,7 @@ runs:
       if: "${{ inputs.cli-version == '' }}"
       uses: trunk-io/analytics-uploader@main
       with:
-        org-slug: Trunk
+        org-slug: trunk
         token: ${{ inputs.token }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}

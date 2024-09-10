@@ -33,7 +33,7 @@ jobs:
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/gradle/**/test-results/**/*.xml"
           run: gradle test --project-dir java/gradle
@@ -42,7 +42,7 @@ jobs:
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/surefire-reports/*.xml"
           run: mvn test --file java/maven/pom.xml --quiet
@@ -51,7 +51,7 @@ jobs:
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/playwright/**/surefire-reports/*.xml"
           run: mvn test --file java/playwright/pom.xml --quiet
