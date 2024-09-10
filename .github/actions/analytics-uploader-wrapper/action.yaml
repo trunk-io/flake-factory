@@ -27,6 +27,7 @@ runs:
         cli-version: ${{ inputs.cli-version }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
+        quarantine: true
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
@@ -38,5 +39,6 @@ runs:
         token: ${{ inputs.token }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
+        quarantine: true
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
