@@ -5,16 +5,15 @@
 
 ### Welcome
 
-This repository is designed to generate flaky test results. Many of the tests are written poorly with intent
-to flake. 
+This repository is designed to generate flaky test results. Many of the tests are written poorly
+with intent to flake.
 
 ### Demonstrated testing frameworks
 
-
-| Technology      | Linters                                                                                                              |
-| --------------- | -------------------------------------------------------------------------------------------------------------------- |
-| python             | pytest, robotframework  |
-| javascript         | mocha, jasmine, jest |
+| Technology | Linters                |
+| ---------- | ---------------------- |
+| python     | pytest, robotframework |
+| javascript | mocha, jasmine, jest   |
 
 <br/>
 
@@ -25,7 +24,8 @@ will hopefully allow our community to share ideas on the best tools and best pra
 make everyone's job of building code a little bit easier, a little bit faster, and maybe in the
 process - a little bit more fun. Read more about [Trunk Flaky](https://trunk.io/flaky-tests).
 
-
 [slack]: https://slack.trunk.io
 [docs]: https://docs.trunk.io
 [vscode]: https://marketplace.visualstudio.com/items?itemName=Trunk.io
+
+BUMP: just running tests
