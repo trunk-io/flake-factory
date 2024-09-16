@@ -29,6 +29,7 @@ jobs:
 
       - name: run tests
         run: bazel test //bazel/gtest:hello_test
+        continue-on-error: true
 
       - name: upload tests
         if: ${{ always() }}

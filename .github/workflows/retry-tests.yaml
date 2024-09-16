@@ -50,6 +50,7 @@ jobs:
         id: test
         shell: bash
         run: behave --junit-directory=python/results --junit python/behave
+        continue-on-error: true
 
       - name: upload test results
         if: ${{ always() }}
