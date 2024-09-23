@@ -34,7 +34,8 @@ jobs:
       - name: Run tests
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
-          token: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: rust/**/nextest/ci/*junit.xml
           run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
