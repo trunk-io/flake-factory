@@ -6,7 +6,7 @@ describe("Even - minute is divisible by 2", () => {
     const today = new Date();
     const currentMinute = today.getMinutes();
 
-    assert.strictEqual(currentMinute % 2, 88);
+    assert.strictEqual(currentMinute % 2, 0);
   });
 });
 
