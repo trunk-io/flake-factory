@@ -30,6 +30,7 @@ runs:
         token: ${{ inputs.token-prod }}
         cli-version: ${{ inputs.cli-version }}
         junit-paths: ${{ inputs.junit-paths }}
+        allow-missing-junit-files: false
         run: ${{ inputs.run }}
         quarantine: false
 
@@ -56,6 +57,7 @@ runs:
         token: ${{ inputs.token-prod }}
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
+        allow-missing-junit-files: false
         quarantine: false
 
     - name: Upload test results with default CLI version to staging
@@ -67,5 +69,6 @@ runs:
         junit-paths: ${{ inputs.junit-paths }}
         run: ${{ inputs.run }}
         quarantine: true
+        allow-missing-junit-files: false
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
