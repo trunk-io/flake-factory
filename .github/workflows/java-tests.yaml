@@ -29,25 +29,45 @@ jobs:
           distribution: temurin
           cache: maven
 
-      - name: Run tests with Gradle
+      - name: Run tests with Gradle and JUnit
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
-          junit-paths: "**/gradle/**/test-results/**/*.xml"
-          run: gradle test --project-dir java/gradle
+          junit-paths: "**/gradle-junit/**/test-results/**/*.xml"
+          run: gradle test --project-dir java/gradle-junit
 
-      - name: Run tests with Maven
+      - name: Run tests with Maven and JUnit
         if: ${{ always() }}
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
           token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
-          junit-paths: "**/surefire-reports/*.xml"
-          run: mvn test --file java/maven/pom.xml --quiet
+          junit-paths: "**/maven-junit**/surefire-reports/*.xml"
+          run: mvn test --file java/maven-junit/pom.xml --quiet
+
+      - name: Run tests with Gradle and TestNG
+        if: ${{ always() }}
+        uses: ./.github/actions/analytics-uploader-wrapper
+        with:
+          token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/gradle-testng/**/test-results/**/TEST-org.example.AppTest.xml"
+          run: gradle test --project-dir java/gradle-testng
+
+      - name: Run tests with Maven and TestNG
+        if: ${{ always() }}
+        uses: ./.github/actions/analytics-uploader-wrapper
+        with:
+          token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/maven-testng**/surefire-reports/TEST-TestSuite.xml"
+          run: mvn test --file java/maven-testng/pom.xml --quiet
 
       - name: Run playwright tests with Maven
         if: ${{ always() }}
@@ -58,3 +78,13 @@ jobs:
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/playwright/**/surefire-reports/*.xml"
           run: mvn test --file java/playwright/pom.xml --quiet
+
+      - name: Run playwright tests with Maven
+        if: ${{ always() }}
+        uses: ./.github/actions/analytics-uploader-wrapper
+        with:
+          token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: "**/test-output/junitreports/*.xml"
+          run: java org.testng.TestNG testing.xml
