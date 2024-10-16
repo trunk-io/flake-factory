@@ -1,18 +1,20 @@
-# install maven
+# Maven
+
+## install maven
 
 Install maven from ubuntu
 
-``` shell
+```shell
 sudo apt install maven -y
 ```
 
 Install maven from MacOS
 
-``` shell
+```shell
 brew install maven
 ```
 
-# build and test
+## build and test
 
 ```shell
 mvn compile
