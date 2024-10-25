@@ -8,6 +8,9 @@ inputs:
   token-prod:
     description: Organization token for prod.
     required: true
+  token-dev:
+    description: Organization token for dev.
+    required: true
   junit-paths:
     description: Comma-separated list of glob paths to junit files.
     required: true
@@ -35,6 +38,7 @@ runs:
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to staging
       if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-staging-org
@@ -45,6 +49,19 @@ runs:
         quarantine: true
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev
+      if: "${{ inputs.cli-version != '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io/
 
     - name: Upload test results with default CLI version to prod
       if: "${{ inputs.cli-version == '' }}"
@@ -59,6 +76,7 @@ runs:
 
     - name: Upload test results with default CLI version to staging
       if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-staging-org
@@ -68,3 +86,15 @@ runs:
         quarantine: true
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+    - name: Upload test results with default CLI version to dev
+      if: "${{ inputs.cli-version == '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io
