@@ -9,7 +9,7 @@ inputs:
     description: Organization token for prod.
     required: true
   token-dev:
-    description: Organization token for prod.
+    description: Organization token for dev.
     required: true
   junit-paths:
     description: Comma-separated list of glob paths to junit files.
@@ -38,6 +38,7 @@ runs:
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to staging
       if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-staging-org
@@ -75,6 +76,7 @@ runs:
 
     - name: Upload test results with default CLI version to staging
       if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-staging-org
