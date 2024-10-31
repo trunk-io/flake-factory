@@ -69,6 +69,7 @@ runs:
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev2
       if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-io
