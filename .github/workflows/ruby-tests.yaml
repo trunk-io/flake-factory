@@ -2,7 +2,7 @@ name: Ruby Tests
 
 on:
   schedule:
-    - cron: 0 */6 * * *
+    - cron: "*/6 * * * *"
   pull_request:
     branches: [main]
   workflow_dispatch:
