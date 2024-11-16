@@ -14,6 +14,12 @@ inputs:
   token-dev2:
     description: Organization token for dev2.
     required: true
+  token-dev3:
+    description: Organization token for dev3.
+    required: true
+  token-dev4:
+    description: Organization token for dev4.
+    required: true
   junit-paths:
     description: Comma-separated list of glob paths to junit files.
     required: true
@@ -81,6 +87,34 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io/
 
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev3
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev3 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io/
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev4
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev4 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io/
+
     - name: Upload test results with default CLI version to prod
       if: "${{ inputs.cli-version == '' }}"
       continue-on-error: true
@@ -120,6 +154,7 @@ runs:
 
     - name: Upload test results with default CLI version to dev2
       if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
       uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-io
@@ -129,3 +164,29 @@ runs:
         quarantine: true
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
+
+    - name: Upload test results with default CLI version to dev3
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev3 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io
+
+    # Do not continue-on-error for last upload
+    - name: Upload test results with default CLI version to dev4
+      if: "${{ inputs.cli-version == '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev4 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io
