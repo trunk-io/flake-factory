@@ -50,7 +50,7 @@ jobs:
             echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
             echo "title=Duck 🦆" >> $GITHUB_OUTPUT
           else
-            echo "secret_name=JOSH_PAT" >> $GITHUB_OUTPUT
+            echo "secret_name=ELI_PAT" >> $GITHUB_OUTPUT
             echo "title=Rabbit 🐇" >> $GITHUB_OUTPUT
           fi
 
