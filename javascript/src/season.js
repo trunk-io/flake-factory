@@ -5,7 +5,7 @@ const Animal = {
 
 class Season {
   getCurrent() {
-    return Animal.Duck;
+    return Animal.Rabbit;
   }
 }
 
