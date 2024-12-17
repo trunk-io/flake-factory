@@ -1,0 +1,3 @@
+bazel/**/* @TylerJang27 bad-example-email@example.com bad-example-email-with-👍@example.com
+bazel/**/* @TylerJang27 good-example-email@example.com good-example-email-with-👍@example.com
+* @dev-team

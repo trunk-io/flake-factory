@@ -7,7 +7,7 @@
 * @default-codeowner
 
 # Specify multiple Code Owners by using a tab or space:
-* @multiple @code @owners
+* @multiple @code @owners @TylerJang27 @test
 
 # Rules defined later in the file take precedence over the rules
 # defined before.
