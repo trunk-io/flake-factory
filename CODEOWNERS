@@ -70,3 +70,5 @@ data-models/ @data-science-team
 [DOCUMENTATION]
 README.md  @docs
 
+[TESTING]
+go @tenesttang-trunk
