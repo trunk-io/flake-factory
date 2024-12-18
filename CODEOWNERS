@@ -70,3 +70,6 @@ data-models/ @data-science-team
 [DOCUMENTATION]
 README.md  @docs
 
+[TESTING]
+go @tenesttang-trunk
+go/src @this-is-an-absurdly-long-user-name-and-gosh-i-do-not-know-how-long-is-too-long-please-alex-help-me-determine-how-many-characters-is-enough-lmao-i-am-crying
