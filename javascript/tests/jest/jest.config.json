@@ -1,6 +1,7 @@
 {
   "reporters": [
     "default",
+    "buildkite-test-collector/jest/reporter",
     [
       "jest-junit",
       {
@@ -9,5 +10,6 @@
         "addFileAttribute": "true"
       }
     ]
-  ]
+  ],
+  "testLocationInResults": true
 }

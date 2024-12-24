@@ -5,11 +5,11 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "cucumber-test": "./javascript/tests/cucumber/is_it_friday.feature --format-options='{\"junit\": {\"suiteName\":\"mySuite\"} }' --format junit:tests/cucumber/output.xml  ",
     "jasmine-test": "jasmine 'javascript/tests/jasmine/**/*.js'",
     "jest-test": "jest javascript/tests/jest/**/*.js --config=javascript/tests/jest/jest.config.json",
-    "playwright-test": "npx playwright test",
     "mocha-test": "mocha 'javascript/tests/mocha/**/*.*js' --reporter mocha-junit-reporter --reporter-options mochaFile=javascript/tests/mocha/mocha_test.xml",
-    "cucumber-test": "./javascript/tests/cucumber/is_it_friday.feature --format-options='{\"junit\": {\"suiteName\":\"mySuite\"} }' --format junit:tests/cucumber/output.xml  ",
+    "playwright-test": "npx playwright test",
     "test": "npm run jest-test"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "@types/node": "^20.11.30",
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "browserify": "^17.0.0",
+    "buildkite-test-collector": "^1.7.3",
     "chai": "^5.1.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
