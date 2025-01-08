@@ -1,8 +1,8 @@
 name: Java Tests
 
 on:
-  # schedule:
-  #   - cron: "*/6 * * * *"
+  schedule:
+    - cron: "*/6 * * * *"
   pull_request:
     branches: [main]
   workflow_dispatch:
