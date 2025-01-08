@@ -126,18 +126,18 @@ runs:
     #     run: ${{ inputs.run }}
     #     quarantine: false
 
-    # - name: Upload test results with default CLI version to staging
-    #   if: "${{ inputs.cli-version == '' }}"
-    #   continue-on-error: true
-    #   uses: trunk-io/analytics-uploader@main
-    #   with:
-    #     org-slug: tyler-trunk
-    #     token: ${{ inputs.token-staging }}
-    #     junit-paths: ${{ inputs.junit-paths }}
-    #     run: ${{ inputs.run }}
-    #     quarantine: true
-    #   env:
-    #     TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+    - name: Upload test results with default CLI version to staging
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: tyler-trunk
+        token: ${{ inputs.token-staging }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
 
     # - name: Upload test results with default CLI version to dev
     #   if: "${{ inputs.cli-version == '' }}"
@@ -165,18 +165,18 @@ runs:
     #   env:
     #     TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
 
-    # - name: Upload test results with default CLI version to dev3
-    #   if: "${{ inputs.cli-version == '' }}"
-    #   continue-on-error: true
-    #   uses: trunk-io/analytics-uploader@main
-    #   with:
-    #     org-slug: tyler-trunk
-    #     token: ${{ inputs.token-dev3 }}
-    #     junit-paths: ${{ inputs.junit-paths }}
-    #     run: ${{ inputs.run }}
-    #     quarantine: true
-    #   env:
-    #     TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io
+    - name: Upload test results with default CLI version to dev3
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: tyler-trunk
+        token: ${{ inputs.token-dev3 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io
 
     # # Do not continue-on-error for last upload
     # - name: Upload test results with default CLI version to dev4
