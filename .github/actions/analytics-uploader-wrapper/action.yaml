@@ -73,19 +73,19 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io/
 
-    # - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev2
-    #   if: "${{ inputs.cli-version != '' }}"
-    #   continue-on-error: true
-    #   uses: trunk-io/analytics-uploader@main
-    #   with:
-    #     org-slug: tyler-trunk
-    #     token: ${{ inputs.token-dev2 }}
-    #     cli-version: ${{ inputs.cli-version }}
-    #     junit-paths: ${{ inputs.junit-paths }}
-    #     run: ${{ inputs.run }}
-    #     quarantine: true
-    #   env:
-    #     TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io/
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev2
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: tyler-trunk
+        token: ${{ inputs.token-dev2 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io/
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev3
       if: "${{ inputs.cli-version != '' }}"
@@ -152,18 +152,18 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io
 
-    # - name: Upload test results with default CLI version to dev2
-    #   if: "${{ inputs.cli-version == '' }}"
-    #   continue-on-error: true
-    #   uses: trunk-io/analytics-uploader@main
-    #   with:
-    #     org-slug: tyler-trunk
-    #     token: ${{ inputs.token-dev2 }}
-    #     junit-paths: ${{ inputs.junit-paths }}
-    #     run: ${{ inputs.run }}
-    #     quarantine: true
-    #   env:
-    #     TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
+    - name: Upload test results with default CLI version to dev2
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: tyler-trunk
+        token: ${{ inputs.token-dev2 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        run: ${{ inputs.run }}
+        quarantine: true
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
 
     - name: Upload test results with default CLI version to dev3
       if: "${{ inputs.cli-version == '' }}"
