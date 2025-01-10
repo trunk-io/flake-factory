@@ -9,4 +9,6 @@ class Season {
   }
 }
 
+// changing a js file
+
 export default Season;
