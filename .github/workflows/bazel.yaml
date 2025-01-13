@@ -42,4 +42,5 @@ jobs:
           token-dev3: ${{ secrets.TRUNK_DEV3_ORG_API_TOKEN }}
           token-dev4: ${{ secrets.TRUNK_DEV4_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
-          junit-paths: bazel-testlogs/**/test.xml
+          junit-paths: ""
+          bazel-bep-path: build_events.json
