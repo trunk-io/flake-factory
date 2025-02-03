@@ -18,5 +18,12 @@ final class EmailTest extends TestCase
 
         Email::fromString('invalid');
     }
+
+    public function philsRandomTest(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+
+        Email::fromString('invalid');
+    }
 }
 
