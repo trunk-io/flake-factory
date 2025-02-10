@@ -97,7 +97,7 @@ runs:
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev3
       if: "${{ inputs.cli-version != '' }}"
       continue-on-error: true
-      uses: trunk-io/analytics-uploader@maverick/debug
+      uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-io
         token: ${{ inputs.token-dev3 }}
@@ -181,7 +181,7 @@ runs:
     - name: Upload test results with default CLI version to dev3
       if: "${{ inputs.cli-version == '' }}"
       continue-on-error: true
-      uses: trunk-io/analytics-uploader@maverick/debug
+      uses: trunk-io/analytics-uploader@main
       with:
         org-slug: trunk-io
         token: ${{ inputs.token-dev3 }}
