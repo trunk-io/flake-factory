@@ -1,0 +1,5 @@
+*           @my-global-reviewer reviewer@review.com
+
+/php/       @oh-a-different-user  😎😎😎😎😎😎😎😎😎
+/php/**     @other-glob
+/php/phpunit/tests yet even deeper lol
