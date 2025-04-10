@@ -2,7 +2,7 @@
 # To learn more about the format of this file, see https://docs.trunk.io/reference/trunk-yaml
 version: 0.1
 cli:
-  version: 1.21.0
+  version: 1.22.12
   shell_hooks:
     enforce: true
 
@@ -10,21 +10,23 @@ plugins:
   sources:
     - id: trunk
       uri: https://github.com/trunk-io/plugins
-      ref: d91cf4f0d67db22f4b69bd33a3e8c06c92002d91
+      ref: v1.6.7
     - id: configs
       uri: https://github.com/trunk-io/configs
-      ref: v1.0.3
+      ref: v1.0.10
 
 # Many linters and tools depend on runtimes - configure them here. (https://docs.trunk.io/runtimes)
 runtimes:
   enabled:
+    - java@13.0.11
     - node@20.11.1
     - python@3.10.8
     - ruby@>3.1.0
 
 lint:
   enabled:
-    - eslint@9.0.0-beta.2
+    - ktlint@1.5.0
+    - eslint@9.24.0
   ignore:
     - linters: [ALL]
       paths:
@@ -43,5 +45,5 @@ tools:
     - node
     - python
   enabled:
-    - bazel@7.2.1
-    - pnpm@8.15.5
+    - bazel@8.1.1
+    - pnpm@10.8.0
