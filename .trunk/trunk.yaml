@@ -10,10 +10,10 @@ plugins:
   sources:
     - id: trunk
       uri: https://github.com/trunk-io/plugins
-      ref: v1.6.7
+      ref: v1.6.8
     - id: configs
       uri: https://github.com/trunk-io/configs
-      ref: v1.0.10
+      ref: v1.0.11
 
 # Many linters and tools depend on runtimes - configure them here. (https://docs.trunk.io/runtimes)
 runtimes:
@@ -25,6 +25,7 @@ runtimes:
 
 lint:
   enabled:
+    - golangci-lint2@2.1.2
     - ktlint@1.5.0
     - eslint@9.24.0
   ignore:
@@ -45,5 +46,5 @@ tools:
     - node
     - python
   enabled:
-    - bazel@8.1.1
-    - pnpm@10.8.0
+    - bazel@8.2.0
+    - pnpm@10.8.1
