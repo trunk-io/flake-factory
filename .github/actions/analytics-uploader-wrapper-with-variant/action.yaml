@@ -1,0 +1,230 @@
+name: Trunk Analytics Uploader Wrapper
+description: Wrapper that supplies defaults to the `analytics-uploader` action
+
+inputs:
+  token-staging:
+    description: Organization token for staging.
+    required: true
+  token-prod:
+    description: Organization token for prod.
+    required: true
+  token-dev:
+    description: Organization token for dev.
+    required: true
+  token-dev2:
+    description: Organization token for dev2.
+    required: true
+  token-dev3:
+    description: Organization token for dev3.
+    required: true
+  token-dev4:
+    description: Organization token for dev4.
+    required: true
+  junit-paths:
+    description: Comma-separated list of glob paths to junit files.
+    required: true
+  bazel-bep-path:
+    description: Path to the Bazel BEP file.
+    required: false
+  run:
+    description: The command to run before uploading test results.
+    required: false
+  cli-version:
+    description: The version of the uploader to use.
+    required: false
+  variant:
+    description: Variant to flag the upload with.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to prod
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk
+        token: ${{ inputs.token-prod }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: false
+        variant: ${{ inputs.variant }}
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to staging
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-staging-org
+        token: ${{ inputs.token-staging }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io/
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev2
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev2 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io/
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev3
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev3 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io/
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev4
+      if: "${{ inputs.cli-version != '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev4 }}
+        cli-version: ${{ inputs.cli-version }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io/
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with default CLI version to prod
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk
+        token: ${{ inputs.token-prod }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: false
+        variant: ${{ inputs.variant }}
+
+    - name: Upload test results with default CLI version to staging
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-staging-org
+        token: ${{ inputs.token-staging }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.trunk-staging.io
+
+    - name: Upload test results with default CLI version to dev
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with default CLI version to dev2
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev2 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
+        DISABLE_SENTRY: true
+
+    - name: Upload test results with default CLI version to dev3
+      if: "${{ inputs.cli-version == '' }}"
+      continue-on-error: true
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev3 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io
+        DISABLE_SENTRY: true
+
+    # Do not continue-on-error for last upload
+    - name: Upload test results with default CLI version to dev4
+      if: "${{ inputs.cli-version == '' }}"
+      uses: trunk-io/analytics-uploader@main
+      with:
+        org-slug: trunk-io
+        token: ${{ inputs.token-dev4 }}
+        junit-paths: ${{ inputs.junit-paths }}
+        bazel-bep-path: ${{ inputs.bazel-bep-path }}
+        run: ${{ inputs.run }}
+        quarantine: true
+        variant: ${{ inputs.variant }}
+      env:
+        TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io
+        DISABLE_SENTRY: true
