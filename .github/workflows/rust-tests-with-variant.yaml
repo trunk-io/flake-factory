@@ -1,0 +1,46 @@
+name: Rust Tests With Variant
+
+on:
+  schedule:
+    - cron: "*/6 * * * *"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      # trunk-ignore(checkov/CKV_GHA_7)
+      cli-version:
+        type: string
+        required: false
+        description:
+          The version of `analytics-cli` to use. Defaults to the latest specified in
+          `analytis-uploader`.
+
+jobs:
+  test:
+    runs-on: public-amd64-small
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Build
+        run: cargo build -q --all --manifest-path=./rust/Cargo.toml
+
+      - name: Install nextest
+        run: curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+
+      - name: Run tests
+        uses: ./.github/actions/analytics-uploader-wrapper-with-variant
+        with:
+          token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
+          token-prod: ${{ secrets.TRUNK_PROD_ORG_API_TOKEN }}
+          token-dev: ${{ secrets.TRUNK_DEV_ORG_API_TOKEN }}
+          token-dev2: ${{ secrets.TRUNK_DEV2_ORG_API_TOKEN }}
+          token-dev3: ${{ secrets.TRUNK_DEV3_ORG_API_TOKEN }}
+          token-dev4: ${{ secrets.TRUNK_DEV4_ORG_API_TOKEN }}
+          cli-version: ${{ inputs.cli-version }}
+          junit-paths: rust/**/nextest/ci/*junit.xml
+          run: cargo nextest run --profile=ci --manifest-path=./rust/Cargo.toml
+          variant: test-variant
