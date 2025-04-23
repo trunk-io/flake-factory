@@ -30,7 +30,7 @@ jobs:
           cache: maven
 
       - name: Run tests with Gradle
-        if: ${{ always() }}
+        continue-on-error: true
         uses: ./.github/actions/analytics-uploader-wrapper
         with:
           token-staging: ${{ secrets.TRUNK_STAGING_ORG_API_TOKEN }}
@@ -41,7 +41,7 @@ jobs:
           token-dev4: ${{ secrets.TRUNK_DEV4_ORG_API_TOKEN }}
           cli-version: ${{ inputs.cli-version }}
           junit-paths: "**/gradle/**/test-results/**/*.xml"
-          run: gradle test --project-dir java/gradle
+          run: gradle test --project-dir java/gradle && exit 1
 
       - name: Run tests with Maven
         if: ${{ always() }}

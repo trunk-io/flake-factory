@@ -37,7 +37,7 @@ runs:
   using: composite
   steps:
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to staging
-      uses: trunk-io/analytics-uploader@gabe/find-previous-exit-code
+      uses: trunk-io/analytics-uploader@gabe/test
       with:
         org-slug: trunk-staging-org
         token: ${{ inputs.token-staging }}
