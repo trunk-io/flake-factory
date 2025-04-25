@@ -20,6 +20,7 @@ on:
 jobs:
   rerun:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Run all test workflows with CLI version ${{ inputs.cli-version || 'latest' }}
         env:
