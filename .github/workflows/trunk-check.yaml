@@ -15,7 +15,7 @@ permissions: read-all
 jobs:
   trunk_check_runner:
     name: Trunk Check runner [linux]
-    runs-on: public-amd64-large
+    runs-on: ubuntu-latest
     timeout-minutes: 120
 
     steps:
