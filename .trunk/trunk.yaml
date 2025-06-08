@@ -30,6 +30,9 @@ lint:
       paths:
         - "**/pnpm-lock.yaml"
         - "**/.bundle"
+        # Ignore auto generated Gradle wrapper scripts
+        - "**/gradlew"
+        - "**/gradlew.bat"
 
 actions:
   enabled:
