@@ -79,6 +79,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io/
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev2
       if: "${{ inputs.cli-version != '' }}"
@@ -95,6 +96,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io/
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev3
       if: "${{ inputs.cli-version != '' }}"
@@ -111,6 +113,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io/
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with CLI version ${{ inputs.cli-version }} to dev4
       if: "${{ inputs.cli-version != '' }}"
@@ -127,6 +130,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io/
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with default CLI version to prod
       if: "${{ inputs.cli-version == '' }}"
@@ -168,6 +172,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev.trunk-staging.io
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with default CLI version to dev2
       if: "${{ inputs.cli-version == '' }}"
@@ -183,6 +188,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev2.trunk-staging.io
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     - name: Upload test results with default CLI version to dev3
       if: "${{ inputs.cli-version == '' }}"
@@ -198,6 +204,7 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev3.trunk-staging.io
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
 
     # Do not continue-on-error for last upload
     - name: Upload test results with default CLI version to dev4
@@ -213,3 +220,4 @@ runs:
       env:
         TRUNK_PUBLIC_API_ADDRESS: https://api.dev4.trunk-staging.io
         DISABLE_SENTRY: true
+        DISABLE_TELEMETRY: true
