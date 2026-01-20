@@ -15,4 +15,8 @@ describe("Jest - Day of the Week Tests", () => {
     const today = moment().format("dddd");
     expect(["Saturday", "Sunday"]).toContain(today);
   });
+  test("today is Saturday", () => {
+    const today = moment().format("dddd");
+    expect(["Saturday"]).toContain(today);
+  });
 });
