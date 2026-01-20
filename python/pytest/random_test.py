@@ -70,3 +70,7 @@ def test_20_percent():
 def test_10_percent():
     random_number = secrets.randbelow(100)
     assert random_number <= 10
+
+def test_tyler_50_percent():
+    random_number = secrets.randbelow(100)
+    assert random_number <= 50
